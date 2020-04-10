@@ -1,0 +1,166 @@
+﻿
+*, *:before, *:after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	overflow: hidden;
+}
+
+#container-main {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+#sidebar, #content {
+	float: left;
+	height: 100%;
+	vertical-align: top;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+p, a, code {
+	line-height: 1.5;
+}
+
+a, a:hover, a:focus {
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.1s;
+}
+
+code {
+	font-size: 12px;
+	font-weight: bold;
+	font-family: monospace;
+	color: rgb(207, 36, 36);
+}
+
+hr {
+	margin-top: 10px;
+	background-color: #333;
+}
+
+
+/* SIDEBAR STYLE */
+
+#sidebar {
+	color: #fff;
+	width: 350px;
+	background: rgb(140, 160, 243);
+}
+
+#sidebar h5 {
+	background-color: #7b88e0;
+}
+
+#sidebar h3, #sidebar h5, #sidebar h6 {
+	padding: 10px;
+	font-weight: bold;
+}
+
+#sidebar h6 {
+	padding: 10px;
+	font-size: 13px;
+	font-weight: normal;
+}
+
+#sidebar ul li a {
+	padding: 5px;
+	display: block;
+	padding-left: 30px;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+#sidebar ul li a.selected {
+	background-color: #89c1ff;
+}
+
+#sidebar ul li a:hover {
+	color: #7386D5;
+	background: #fff;
+}
+
+
+/* CONTENT STYLE */
+#content {
+	padding: 20px 0;
+	width: calc(100% - 350px);
+}
+
+#content .content-items {
+	padding-left: 20px;
+}
+
+#content .content-section {
+	padding: 5px;
+	margin-top: 10px;
+	background-color: #eee;
+}
+
+#content .content-section code:last-of-type {
+	margin: 0;
+}
+
+#content h2:not(:first-of-type) {
+	margin-top: 80px;
+}
+
+#content h2 {
+	padding: 0 10px;
+}
+
+#content h3 {
+	margin-top: 50px;
+	padding: 0 10px;
+}
+
+#content h4 {
+	margin-top: 30px;
+}
+
+#content .content-items h4:first-of-type {
+	margin-top: 20px;
+}
+
+#content p {
+	margin: 0;
+	font-size: 14px;
+}
+
+#content .content-items p:not(:first-of-type) {
+	margin-top: 10px;
+}
+
+#content code {
+	display: block;
+}
+
+#content pre code {
+	font-size: 12px !important;
+}
+
+#content a {
+	color: blue;
+	font-size: 12px;
+	padding: 2px 5px;
+	display: inline-block;
+}
+
+#content table td {
+	padding: 5px;
+	font-size: 14px;
+}
+
+#content table tr td:last-of-type {
+	padding-left: 15px;
+}

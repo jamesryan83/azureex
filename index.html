@@ -1,0 +1,1270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>AZ204</title>
+
+		<link rel="stylesheet" href="css/site.css" />
+		<link rel="stylesheet" href="lib/highlight/styles/default.css" />
+		<link rel="stylesheet" href="lib/highlight/styles/vs.css" />
+	</head>
+	<body>
+		<div id="container-main" class="container-fluid p-0">
+
+			<!-- Sidebar -->
+			<nav id="sidebar">
+				<h3>AZ-204</h3>
+
+				<ul class="list-unstyled">
+					<li><h5>Develop Azure compute solutions (25-30%)</h5></li>
+					<li>
+						<h6>Implement IaaS solutions</h6>
+						<ul class="list-unstyled">
+							<li><a href="#1">provision VMs</a></li>
+							<li><a href="#2">create ARM templates</a></li>
+							<li><a href="#3">create container images for solutions</a></li>
+							<!-- <li><a href="#4">publish an image to the Azure Container Registry</a></li>
+							<li><a href="#5">run containers by using Azure Container Instance</a></li> -->
+						</ul>
+					</li>
+					<li>
+						<h6>Create Azure App Service Web Apps</h6>
+						<ul class="list-unstyled">
+							<li><a href="#6">create an Azure App Service Web App</a></li>
+							<li><a href="#7">enable diagnostics logging</a></li>
+							<li><a href="#8">deploy code to a web app</a></li>
+							<li><a href="#9">configure web app settings</a></li>
+							<li><a href="#10">implement autoscaling rules (schedule, operational/system metrics)</a></li>
+						</ul>
+					</li>
+					<li>
+						<h6>Implement Azure functions</h6>
+						<ul class="list-unstyled">
+							<li><a href="#11">implement input and output bindings for a function</a></li>
+							<li><a href="#12">implement function triggers by using data operations, timers, and webhooks</a></li>
+							<li><a href="#13">implement Azure Durable Functions</a></li>
+						</ul>
+					</li>
+
+					<li><h5>Develop for Azure storage (10-15%)</h5></li>
+					<li>
+						<h6>Develop solutions that use Cosmos DB storage</h6>
+						<ul class="list-unstyled">
+							<li><a href="#14">select the appropriate API for your solution</a></li>
+							<li><a href="#15">implement partitioning schemes</a></li>
+							<li><a href="#16">interact with data using the appropriate SDK</a></li>
+							<li><a href="#17">set the appropriate consistency level for operations</a></li>
+							<li><a href="#18">create Cosmos DB containers</a></li>
+						</ul>
+					</li>
+					<li>
+						<h6>Develop solutions that use blob storage</h6>
+						<ul class="list-unstyled">
+							<li><a href="#19">move items in Blob storage between storage accounts or containers</a></li>
+							<li><a href="#20">set and retrieve properties and metadata</a></li>
+							<li><a href="#21">interact with data using the appropriate SDK</a></li>
+							<li><a href="#22">implement data archiving and retention</a></li>
+						</ul>
+					</li>
+
+					<li><h5>Implement Azure security (15-20%)</h5></li>
+					<li>
+						<h6>Implement user authentication and authorization</h6>
+						<ul class="list-unstyled">
+							<li><a href="#23">implement OAuth2 authentication</a></li>
+							<li><a href="#24">create and implement shared access signatures</a></li>
+							<li><a href="#25">register apps and use Azure Active Directory to authenticate users</a></li>
+						</ul>
+					</li>
+					<li>
+						<h6>Implement secure cloud solutions</h6>
+						<ul class="list-unstyled">
+							<li><a href="#26">secure app configuration data by using the App Configuration and KeyVault API</a></li>
+							<li><a href="#27">manage keys, secrets, and certificates by using the KeyVault API</a></li>
+							<li><a href="#28">implement Managed Identities for Azure resources</a></li>
+						</ul>
+					</li>
+
+					<li><h5>Monitor, troubleshoot, and optimize Azure solutions (10-15%)</h5></li>
+					<li>
+						<h6>Integrate caching and content delivery within solutions</h6>
+						<ul class="list-unstyled">
+							<li><a href="#29">develop code to implement CDN’s in solutions</a></li>
+							<li><a href="#30">configure cache and expiration policies</a></li>
+							<li><a href="#31">store and retrieve data in Azure Redis cache</a></li>
+						</ul>
+					</li>
+					<li>
+						<h6>Instrument solutions to support monitoring and logging</h6>
+						<ul class="list-unstyled">
+							<li><a href="#32">configure instrumentation in an app or service by using Application Insights</a></li>
+							<li><a href="#33">analyze and troubleshoot solutions by using Azure Monitor</a></li>
+							<li><a href="#34">implement Application Insights Web Test and Alerts</a></li>
+							<li><a href="#35">implement code that handles transient faults</a></li>
+						</ul>
+					</li>
+
+					<li><h5>Connect to and consume Azure services and third-party services (25-30%)</h5></li>
+					<li>
+						<h6>Develop an App Service Logic App</h6>
+						<ul class="list-unstyled">
+							<li><a href="#36">create a Logic App</a></li>
+							<li><a href="#37">create a custom connector for Logic Apps</a></li>
+							<li><a href="#38">create a custom template for Logic Apps</a></li>
+						</ul>
+					</li>
+					<li>
+						<h6>Implement API management</h6>
+						<ul class="list-unstyled">
+							<li><a href="#39">create an APIM instance</a></li>
+							<li><a href="#40">configure authentication for APIs</a></li>
+							<li><a href="#41">define policies for APIs</a></li>
+						</ul>
+					</li>
+					<li>
+						<h6>Develop event-based solutions (Note: Creating event models is in scope)</h6>
+						<ul class="list-unstyled">
+							<li><a href="#42">implement solutions that use Azure Event Grid</a></li>
+							<li><a href="#43">implement solutions that use Azure Notification Hubs</a></li>
+							<li><a href="#44">implement solutions that use Azure Event Hub</a></li>
+						</ul>
+					</li>
+					<li>
+						<h6>Develop message-based solutions</h6>
+						<ul class="list-unstyled">
+							<li><a href="#45">implement solutions that use Azure Service Bus</a></li>
+							<li><a href="#46">implement solutions that use Azure Queue Storage queues</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+
+			<!-- Content -->
+			<div id="content">
+				<h2>Develop Azure compute solutions (25-30%)</h2>
+
+				<hr />
+
+				<h3>Implement IaaS solutions</h3>
+				<div class="content-items">
+					<h4 id="1">provision VMs</h4>
+					<div class="content-section">
+						<code>az vm create --resource-group myResourceGroup --name myVM --image UbuntuLTS --admin-username azureuser --generate-ssh-keys</code>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli" target="_blank">Azure Cli Docs</a>
+					</div>
+
+					<h4 id="2">create ARM templates</h4>
+					<div class="content-section">
+						<p>Azure Resource Manager templates allow for automation of deploying azure services.  Services are defined in a json file.  Inputs to the services in this file can be defined as properties or variables to make the deployment parametric</p>
+						<p>ARM templates can be created in Visual Studio or in plain json files.  They can be created from scratch or copied from existing templates, such as when creating a new services in the portal an ARM template will be available before creation to copy and modify as needed</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-tutorial-create-first-template" target="_blank">Azure Docs</a>
+					</div>
+
+					<h4 id="3">create container images for solutions</h4>
+					<div class="content-section">
+						<p>Docker is required to create images.  A dockerfile is also required which describes the image to use as the base image, where the files will be, the directory to run the application from and how to start the application</p>
+						<br />
+						<pre><code>FROM node:8.9.3-alpine
+RUN mkdir -p /usr/src/app
+COPY ./app/* /usr/src/app/
+WORKDIR /usr/src/app
+RUN npm install
+CMD node /usr/src/app/index.js</code></pre>
+						<p>The following command will create a new image from the project in the current folder with the tag my-project</p>
+						<code>docker build -t my-project .</code>
+						<p>Print a list of the images on the current machine</p>
+						<code>docker list</code>
+						<p>Run the image with the specified ports</p>
+						<code>docker run -d -p 8080:80 my-project</code>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app" target="_blank">Azure Docs</a>
+					</div>
+
+					<!-- <h4 id="4">publish an image to the Azure Container Registry</h4>
+					<div class="content-section">
+						<p>TODO</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-docker-cli" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli" target="_blank">Azure Docs</a>
+					</div>
+
+					<h4 id="5">run containers by using Azure Container Instance</h4>
+					<div class="content-section">
+						<p>TODO</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-deploy-app" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/learn/modules/run-docker-with-azure-container-instances" target="_blank">Azure Learn</a>
+					</div> -->
+
+				</div>
+
+				<h3>Create Azure App Service Web Apps</h3>
+				<div class="content-items">
+					<h4 id="6">create an Azure App Service Web App</h4>
+					<div class="content-section">
+						<p>First create a resource group</p>
+						<code>az group create --location australiaeast --name myResourceGroup</code>
+						<p>Then create an app service plan</p>
+						<code>az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku FREE</code>
+						<p>Then create the web app.  The webapp --name value needs to be globally unique, so that no-one else with an azure subsrciption has the same name</p>
+						<code>az webapp create --name mywebapp --resource-group myResourceGroup --plan myAppServicePlan</code>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/app-service/scripts/cli-deploy-ftp" target="_blank">Azure Cli Docs</a>
+					</div>
+
+					<h4 id="7">enable diagnostics logging</h4>
+					<div class="content-section">
+						<p>This will enable webapp logging to the filesystem</p>
+						<code>az webapp log config --name mywebapp --resource-group myResourceGroup --application-logging true --detailed-error-messages true --failed-request-tracing true --web-server-logging filesystem</code>
+						<p>This will enable container webapp logging to the filesystem from stdout/stderr</p>
+						<code>az webapp log config --docker-container-logging on --name MyWebapp --resource-group MyResourceGroup</code>
+						<p>Setting up logging to application insights from the azure cli requires a cli extension to be installed</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/app-service/scripts/cli-monitor" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/create-new-resource#azure-cli-preview" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/learn/modules/capture-application-logs-app-service" target="_blank">Azure Learn</a>
+					</div>
+
+					<h4 id="8">deploy code to a web app</h4>
+					<div class="content-section">
+						<p>Setup deployment from a Github repository, where token is the access token and gitrepo is the url to the github repository.  The git access token is only required for private repositories</p>
+						<code>az webapp deployment source config --name mywebapp --resource-group myResourceGroup --repo-url gitrepo --branch master --git-token token</code>
+						<p>Adding --manual-integration to the above command will disable continuous deployment from github</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/app-service/scripts/cli-continuous-deployment-github" target="_blank">Azure Cli Docs</a>
+					</div>
+
+					<h4 id="9">configure web app settings</h4>
+					<div class="content-section">
+						<p>List current webapp settings</p>
+						<code>az webapp config appsettings list -g MyResourceGroup --name mywebapp --output table</code>
+						<p>Create a new webapp configuration setting</p>
+						<code>az webapp config appsettings set -g MyResourceGroup --name mywebapp --settings TEST_SETTING=something</code>
+						<p>Delete the setting that was created above</p>
+						<code>az webapp config appsettings delete -g MyResourceGroup --name mywebapp --setting-names TEST_SETTING</code>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/cli/azure/webapp/config/appsettings?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
+					</div>
+
+					<h4 id="10">implement autoscaling rules (schedule, operational/system metrics)</h4>
+					<div class="content-section">
+						<p><b>Scaling up</b> is adding additional CPU, RAM, Disk space etc by upgrading the App Service Plan to a higher level</p>
+						<p><b>Scaling out</b> is adding additional instances of an App Service</p>
+						<p><b>Autoscaling</b> allows additional instances to be added or removed automatically based on the amount of CPU, RAM etc being used or on a schedule</p>
+						<p>Autoscaling works only on Standard app service plans or higher</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/app-service/manage-scale-up" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-get-started" target="_blank">Azure Docs</a>
+					</div>
+
+				</div>
+
+				<h3>Implement Azure functions</h3>
+				<div class="content-items">
+					<h4 id="11">implement input and output bindings for a function</h4>
+					<div class="content-section">
+						<p>First create a storage account</p>
+						<code>az storage account create -n mystorage -g MyResourceGroup -l australiaeast --sku Standard_LRS</code>
+						<p>Then create a C# function app with Http input/output bindings on a consumption plan from a Github repository.  This will automatically include an application insights instance</p>
+						<code>az functionapp create --name myfunctionapp --storage-account mystorage --consumption-plan-location australiaeast --resource-group MyResourceGroup --deployment-source-url https://github.com/Azure-Samples/functions-quickstart.git --deployment-source-branch master --functions-version 2</code>
+						<p>In a C# azure function the http input request query string parameters can be accessed like this</p>
+						<code>string name = req.GetQueryNameValuePairs()</code>
+						<p>The input body can be accessed like this</p>
+						<code>dynamic data = await req.Content.ReadAsAsync&lt;object&gt;();</code>
+						<p>The output http status code and response can be returned like this where the return type is HttpResponseMessage</p>
+						<code>return req.CreateResponse(HttpStatusCode.OK, "Some value");</code>
+						<p>Alternatively other response types can be returned by using the IActionResult return type</p>
+						<code>return new OkObjectResult("Some value")</code>
+						<p>The function above has Http input and output bindings in the function.json file.  Alternatively the bindings can be added to a function through C# attributes on each function</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-function-app-github-continuous" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings" target="_blank">Azure Docs</a>
+						<a href="https://github.com/Azure-Samples/functions-quickstart" target="_blank">Github</a>
+					</div>
+
+					<h4 id="12">implement function triggers by using data operations, timers, and webhooks</h4>
+					<div class="content-section">
+						<p>The following function detects blobs uploaded to a container called blobtriggercontainer using a blob trigger, reads the content as a string, reverses the string, then saves an output blob with a prefixed datetime to a container called blobtriggercontainer2 using an output binding</p>
+						<br />
+			<pre><code class="c#">[FunctionName("Function1")]
+public static async Task Run([BlobTrigger("blobtriggercontainer/{name}")] CloudBlockBlob myBlob,
+	[Blob("blobtriggercontainer2/{datetime}-{name}", FileAccess.Write)] CloudBlockBlob outputBlob)
+{
+	string inputText = await myBlob.DownloadTextAsync();
+	string outputText = string.Concat(inputText.Reverse());
+	await outputBlob.UploadTextAsync(outputText);
+}</code></pre>
+						<p>The following function will run every 10 seconds by using a timer trigger</p>
+						<br />
+			<pre><code class="c#">[FunctionName("Function1")]
+public static void Run([TimerTrigger("*/10 * * * * *")]TimerInfo myTimer, ILogger log)
+{
+	log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+}</code></pre>
+						<p>The Http trigger function can be used as a webhook</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob-trigger?tabs=csharp" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob-output?tabs=csharp" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer?tabs=csharp" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=csharp#webhooks" target="_blank">Azure Docs</a>
+						<a href="https://cronexpressiondescriptor.azurewebsites.net/" target="_blank">Cron Calculator</a>
+					</div>
+
+					<h4 id="13">implement Azure Durable Functions</h4>
+					<div class="content-section">
+						<p>Below is the setup for a basic durable function.  The HttpStart function is the first function that is called</p>
+						<p>The HttpStart function is a like a proxy to the RunOrchestrator function (Function1) which sets up the Function1_Hello function to be called twice</p>
+						<p>Once both http calls are made to the Function1_Hello function the vaules are returned through the HttpStart function to the caller as an array</p>
+						<p>The calls to the HttpStart function will await until both of them are finished before the entire procedure is complete and returned to the original caller</p>
+						<br />
+						<pre><code class="c#">public static class Function1
+{
+    [FunctionName("Function1_HttpStart")]
+    public static async Task<HttpResponseMessage> HttpStart([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestMessage req,
+		[DurableClient] IDurableOrchestrationClient starter)
+	{
+		string instanceId = await starter.StartNewAsync("Function1", null);
+		return starter.CreateCheckStatusResponse(req, instanceId);
+	}
+
+	[FunctionName("Function1")]
+	public static async Task&lt;List&lt;string>> RunOrchestrator([OrchestrationTrigger] IDurableOrchestrationContext context)
+	{
+		var outputs = new List<string>();
+
+		outputs.Add(await context.CallActivityAsync<string>("Function1_Hello", "Test1"));
+		outputs.Add(await context.CallActivityAsync<string>("Function1_Hello", "Test2"));
+
+		return outputs;
+	}
+
+	[FunctionName("Function1_Hello")]
+	public static string SayHello([ActivityTrigger] string name)
+	{
+		return name;
+	}
+}</code></pre>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-create-first-csharp" target="_blank">Azure Docs</a>
+					</div>
+
+				</div>
+
+				<h2>Develop for Azure storage (10-15%)</h2>
+
+				<hr />
+
+				<h3>Develop solutions that use Cosmos DB storage</h3>
+				<div class="content-items">
+					<h4 id="14">select the appropriate API for your solution</h4>
+					<div class="content-section">
+						<table>
+							<thead>
+								<tr>
+									<td><b>API Name</b></td>
+									<td><b>Usage</b></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>SQL</td>
+									<td>Core (SQL) is the default API for Azure Cosmos DB, which provides you with a view of your data that resembles a traditional NoSQL document store. You can query the hierarchical JSON documents with a SQL-like language. Core (SQL) uses JavaScript's type system, expression evaluation, and function invocation.</td>
+								</tr>
+								<tr>
+									<td>MongoDB</td>
+									<td>Azure Cosmos DB's API for MongoDB supports the MongoDB wire protocol. This API allows existing MongoDB client SDKs, drivers, and tools to interact with the data transparently, as if they are running against an actual MongoDB database. The data is stored in document format, which is the same as using Core (SQL).</td>
+								</tr>
+								<tr>
+									<td>Cassandra</td>
+									<td>Azure Cosmos DB's support for the Cassandra API makes it possible to query data by using the Cassandra Query Language (CQL), and your data will appear to be a partitioned row store. Just like the MongoDB API, any clients or tools should be able to connect transparently to Azure Cosmos DB; only your connection settings should need to be updated.</td>
+								</tr>
+								<tr>
+									<td>Azure Table</td>
+									<td>Azure Cosmos DB's Azure Table API provides support for applications that are written for Azure Table Storage that need premium capabilities like global distribution, high availability, scalable throughput. The original Table API only allows for indexing on the Partition and Row keys; there are no secondary indexes. Storing table data in Comsos DB automatically indexes all the properties, and requires no index management.  Querying is accomplished by using OData and LINQ queries in code, and the original REST API for GET operations.</td>
+								</tr>
+								<tr>
+									<td>Gremlin</td>
+									<td>Choosing Gremlin as the API provides a graph-based view over the data. Remember that at the lowest level, all data in any Azure Cosmos DB is stored in an ARS format. A graph-based view on the database means data is either a vertex (which is an individual item in the database), or an edge (which is a relationship between items in the database).</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/cosmos-db/introduction" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/cosmos-db/cosmosdb-migrationchoices" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-gb/learn/modules/choose-api-for-cosmos-db/" target="_blank">Azure Learn</a>
+					</div>
+
+					<h4 id="15">implement partitioning schemes</h4>
+					<div class="content-section">
+						<p>Collections are distributed across partitions based on the value of a collection's partition key</p>
+						<p>The partition key is a document property. Documents with the same partition key value are always located on the same logical partition. A partition supports a fixed maximum amount of storage and Request Units (RUs). When the capacity of a logical partition gets close to the maximum storage, Azure Cosmos DB allocates another physical partition.</p>
+						<p>A partition key design that doesn't evenly distribute throughput requests can create hot partitions. A hot partition is accessed more than the other partitions. The result is an inefficient use of the total configured throughput.</p>
+						<p>The size of the documents, the volumne of documents being processed, whether or not some data is accessed more than other data, the type of key being used and whether or not there are more reads than writes are all taken into account when selecting a partitioning scheme.  Ideally the partition key would be evenly distributed across the data</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/cosmos-db/manage-with-cli#create-a-container" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-gb/learn/modules/monitor-and-scale-cosmos-db/" target="_blank">Azure Learn</a>
+					</div>
+
+					<h4 id="16">interact with data using the appropriate SDK</h4>
+					<div class="content-section">
+						<p>Create a cosmosdb account</p>
+						<code>az cosmosdb create --name mycosmosdb -g MyResourceGroup</code>
+						<p>The code below uses the cosmosdb C# library to interact with a cosmos account</p>
+						<br />
+						<pre><code class="c#">class CosmosExample
+{
+	public async Task SetupCosmosDb()
+	{
+		CosmosClient client = new CosmosClient("myconnectionstring");
+
+		// Create database
+		Database database = await client.CreateDatabaseIfNotExistsAsync("mydb");
+
+		// Create container
+		Container container = await database.CreateContainerIfNotExistsAsync("mycontainer", "/LastName");
+
+		// Create document in the container
+		Person person = new Person { Id = "1", FirstName = "fn", LastName = "ln" };
+		ItemResponse&lt;Person> response = await container.CreateItemAsync(person, new PartitionKey(person.LastName));
+
+		// Query the container
+		QueryDefinition query = new QueryDefinition("SELECT * FROM mycontainer");
+		FeedIterator&lt;Person> result = container.GetItemQueryIterator&lt;Person>(query);
+
+		// Print out the results
+		while (result.HasMoreResults)
+		{
+			FeedResponse&lt;Person> currentResultSet = await result.ReadNextAsync();
+			foreach (Person p in currentResultSet)
+			{
+				Console.WriteLine("Result: " + p.FirstName + " " + p.LastName);
+			}
+		}
+
+		// Delete the container
+		await container.DeleteContainerAsync();
+
+		// Delete the database
+		await database.DeleteAsync();
+	}
+}
+
+public class Person
+{
+	[JsonProperty(PropertyName = "id")]
+	public string Id { get; set; }
+	public string FirstName { get; set; }
+	public string LastName { get; set; }
+}</code></pre>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-gb/azure/cosmos-db/sql-api-get-started" target="_blank">Azure Docs</a>
+						<a href="https://github.com/Azure/azure-cosmos-dotnet-v3" target="_blank">Github</a>
+					</div>
+
+					<h4 id="17">set the appropriate consistency level for operations</h4>
+					<div class="content-section">
+						<table>
+							<thead>
+								<tr>
+									<td><b>Consistency Level</b></td>
+									<td><b>Description</b></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Strong</td>
+									<td>Reads are guaranteed to return the most recent version of an item.</td>
+								</tr>
+								<tr>
+									<td>Bounded Staleness</td>
+									<td>Reads lag behind writes by at most k prefixes or t interval</td>
+								</tr>
+								<tr>
+									<td>Session</td>
+									<td>Monotonic (preserves order) reads, monotonic writes, read-your-writes, write-follows-reads</td>
+								</tr>
+								<tr>
+									<td>Consistent Prefix</td>
+									<td>Updates returned are some prefix of all the updates, with no gaps</td>
+								</tr>
+								<tr>
+									<td>Eventual</td>
+									<td>Out of order reads</td>
+								</tr>
+							</tbody>
+						</table>
+						<br />
+						<p>Strong consistency has the highest latency, lowest scalability and lower read scalability.  Eventual is the most relaxed consistency level and doesn't guarantee ordered reads</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-gb/learn/modules/distribute-data-globally-with-cosmos-db/" target="_blank">Azure Learn</a>
+					</div>
+
+					<h4 id="18">create Cosmos DB containers</h4>
+					<div class="content-section">
+						<p>Create a cosmosdb container with a partition key using the Azure CLI</p>
+						<code>az cosmosdb sql container create -a mycosmosdb -g MyResourceGroup -d mydb -n mycontainer -p myPartitionKey</code>
+						<p>Create a cosmosdb container with a partition key using the C# library</p>
+						<pre><code class="c#">public async Task SetupCosmosDb()
+{
+	CosmosClient client = new CosmosClient("myconnectionstring");
+	Database database = await client.CreateDatabaseIfNotExistsAsync("mydb");
+	Container container = await database.CreateContainerIfNotExistsAsync("mycontainer", "/mypartitionkey");
+}</code></pre>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/cli/azure/cosmosdb/sql/container?view=azure-cli-latest#az-cosmosdb-sql-container-create" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-gb/azure/cosmos-db/sql-api-get-started#CreateColl" target="_blank">Azure Docs</a>
+					</div>
+
+				</div>
+
+				<h3>Develop solutions that use blob storage</h3>
+				<div class="content-items">
+					<h4 id="19">move items in Blob storage between storage accounts or containers</h4>
+					<div class="content-section">
+						<p>Create a storage account with locally redundant storage</p>
+						<code>az storage account create -n mystorage -g MyResourceGroup -l australiaeast --sku Standard_LRS</code>
+						<p>The get the storage account keys</p>
+						<code>az storage account keys list -n mystorage</code>
+						<p>Then create 2 containers (container1 and container2)</p>
+						<code>az storage container create --name container1 --account-name mystorage --account-key mykey</code>
+						<code>az storage container create --name container2 --account-name mystorage --account-key mykey</code>
+						<p>Then upload a file from your computer to container1</p>
+						<code>az storage blob upload -f "C:\path\to\file\test.txt" -c container1 -n test.txt --account-name mystorage --account-key mykey</code>
+						<p>Then copy a single blob from one container to another</p>
+						<code>az storage blob copy start --source-blob test.txt --source-container container1 --destination-blob "copy of blob test.txt" --destination-container container2 --account-name mystorage --account-key mykey</code>
+						<p>Azure AZCopy can also be used to move blob storage items between storage accounts</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/cli/azure/storage/blob/copy?view=azure-cli-latest#az-storage-blob-copy-start" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-copy" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs#copy-blobs-between-storage-accounts" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/learn/modules/copy-blobs-from-command-line-and-code" target="_blank">Azure Learn</a>
+					</div>
+
+					<h4 id="20">set and retrieve properties and metadata</h4>
+					<div class="content-section">
+						<p>Add a metadata property to a container</p>
+						<code>az storage container metadata update -n container1 --metadata testvalue=something --account-name mystorage --account-key mykey</code>
+						<p>List the current metadata values of a container</p>
+						<code>az storage container metadata show -n container1 --account-name mystorage --account-key mykey</code>
+						<p>Add a metadata property to a single blob</p>
+						<code>az storage blob metadata update -n test.txt -c container1 --metadata avalue=test1 --account-name mystorage --account-key mykey</code>
+						<p>List metadata for a single blob</p>
+						<code>az storage blob metadata show -c container1 -n test.txt --account-name mystorage --account-key mykey</code>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/cli/azure/storage/container/metadata?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/cli/azure/storage/blob/metadata?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-container-properties-metadata" target="_blank">Azure Docs</a>
+					</div>
+
+					<h4 id="21">interact with data using the appropriate SDK</h4>
+					<div class="content-section">
+						<p>Below is an example of using the microsoft Azure.Storage.Blobs library to interact with blob storage</p>
+						<br />
+			<pre><code class="c#">private async Task InteractWithDataUsingTheAppropriateSDK()
+{
+	// Create a container
+	BlobContainerClient client = new BlobContainerClient("UseDevelopmentStorage=true", "testcontainer");
+	await client.CreateIfNotExistsAsync();
+
+	// Upload a blob
+	BlobClient blob = client.GetBlobClient("test.txt");
+	await blob.UploadAsync("C:/path/to/blob/test-input.txt");
+
+	// Print out all blobs
+	foreach (var b in client.GetBlobs())
+	{
+		Console.WriteLine(b.Name);
+	}
+
+	// Download the blob that was uploaded
+	await blob.DownloadToAsync("C:/path/to/blob/test-output.txt");
+
+	// Delete container
+	await client.DeleteAsync();
+}</code></pre>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/storage/Azure.Storage.Blobs" target="_blank">Github</a>
+					</div>
+
+					<h4 id="22">implement data archiving and retention</h4>
+					<div class="content-section">
+						<p><b>Hot</b> storage is for data that is accessed frequently (less than 30 days)</p>
+						<p><b>Cold</b> storage is for any data that will be stored for over 30 days and up to 180 days or longer.  Good for disaster recovery</p>
+						<p><b>Archive</b> storage is for data that is over 180 days, is rarely accessed and has flexible access requirements.  Archive data is stored offline.  Good for compliance and archival data</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-storage-tiers?tabs=azure-portal" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-immutable-storage" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-rehydration" target="_blank">Azure Docs</a>
+					</div>
+
+				</div>
+
+				<h2>Implement Azure security (15-20%)</h2>
+
+				<hr />
+
+				<h3>Implement user authentication and authorization</h3>
+				<div class="content-items">
+					<h4 id="23">implement OAuth2 authentication</h4>
+					<div class="content-section">
+						<p>The first step is selecting the azure tenant that will contain the users and the app.  Then register a new application using azure app registrations.  The user will see a Microsoft login page and will be able to login to the application using their regular microsoft account.  The login page will show as soon as any url is accessed</p>
+						<p>Within an azure asp.net core app, add the AzureAD properties to the appsettings.json file</p>
+						<br />
+			<pre><code class="json">{
+	"AzureAd": {
+		"Instance": "https://login.microsoftonline.com/",
+		"Domain": "[Enter the domain of your tenant, e.g. contoso.onmicrosoft.com]",
+		"TenantId": "mytenantid",
+		"ClientId": "myclientid",
+		"CallbackPath": "/signin-oidc"
+	}
+}</code></pre>
+						<p>Then add the following code to the Startup.cs file in the ConfigureServices method and add app.UseAuthentication(); to the Configure method just before the call to app.UseMvc</p>
+						<br />
+			<pre><code class="c#">services.AddAuthentication(AzureADDefaults.AuthenticationScheme).AddAzureAD(options => Configuration.Bind("AzureAd", options));
+
+services.Configure&lt;OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
+{
+	options.Authority = options.Authority + "/v2.0/";
+	options.TokenValidationParameters.ValidateIssuer = false;
+});
+
+services.AddMvc(options =>
+{
+	options.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build()));
+})</code></pre>
+						<p>Within controller files, adding [Authorize] to a method will make it so the user is required to be authenticated to call that method.  Adding [Authorize] to the class will make it so all methods within that controller require authentication.</p>
+						<p>[AllowAnonymous] will allow a method to be called without authentication even if [Authorize] is added to the class</p>
+						<p>A login/logout button can be added to the navigation bar like this</p>
+						<br />
+			<pre><code class="c#">&#64;if (User.Identity.IsAuthenticated)
+{
+	var identity = User.Identity as ClaimsIdentity;
+	string preferred_username = identity.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value;
+	&lt;ul class="nav navbar-nav navbar-right">
+		&lt;li class="navbar-text">Hello &#64;preferred_username!&lt;/li>
+		&lt;li>&lt;a asp-area="AzureAD" asp-controller="Account" asp-action="SignOut">Sign out&lt;/a>&lt;/li>
+	&lt;/ul>
+}
+else
+{
+	&lt;ul class="nav navbar-nav navbar-right">
+		&lt;li>&lt;a asp-area="AzureAD" asp-controller="Account" asp-action="SignIn">Sign in&lt;/a>&lt;/li>
+	&lt;/ul>
+}</code></pre>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-app-types" target="_blank">Azure Docs</a>
+						<a href="https://identityserver4.readthedocs.io/en/latest/quickstarts/1_client_credentials.html" target="_blank">IdentityServer Docs</a>
+					</div>
+
+					<h4 id="24">create and implement shared access signatures</h4>
+					<div class="content-section">
+						<p>Create a shared access signature for a storage container</p>
+						<code>az storage container generate-sas -n container1 --account-name mystorage --account-key mykey</code>
+						<p>Shared access signatures can also be generated in the portal, storage emulator and C#</p>
+						<br />
+						<pre><code>private async Task StorageSASExample()
+{
+	// Create sas token
+	BlobSasBuilder sas = new BlobSasBuilder
+	{
+		BlobContainerName = "testcontainer",
+		BlobName = "test.txt",
+		Resource = "b",
+		StartsOn = DateTime.UtcNow.Subtract(TimeSpan.FromMinutes(10)),
+		ExpiresOn = DateTime.UtcNow.Add(TimeSpan.FromMinutes(10))
+	};
+	sas.SetPermissions(BlobAccountSasPermissions.All);
+	StorageSharedKeyCredential credentials = new StorageSharedKeyCredential("devstoreaccount1", "accountkey");
+	string sasToken = sas.ToSasQueryParameters(credentials).ToString();
+
+	// Print sas token
+	Console.WriteLine(sasToken);
+
+	// Construct the full URI, including the SAS token.
+	UriBuilder fullUri = new UriBuilder()
+	{
+		Scheme = "http",
+		Host = string.Format("127.0.0.1"),
+		Port = 10000,
+		Path = string.Format("devstoreaccount1/container1"),
+		Query = sasToken
+	};
+
+	// Download blob
+	BlobClient blobClient = new BlobClient(new Uri(fullUri.ToString()), null);
+	var blob = await blobClient.DownloadAsync();
+}</code></pre>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-user-delegation-sas-create-dotnet" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az-storage-account-generate-sas" target="_blank">Azure Cli Docs</a>
+					</div>
+
+					<h4 id="25">register apps and use Azure Active Directory to authenticate users</h4>
+					<div class="content-section">
+						<p>Apps are integrated with the Microsoft identity platform by registering them with an Azure Active Directory tenant</p>
+						<p>Active Directory authentication integration can then be added in Visual Studio to an existing project by adding it as a Connected Service and providing the Client ID from the app that was registered in the portal</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/vs-active-directory-add-connected-service" target="_blank">Azure Docs</a>
+					</div>
+				</div>
+
+				<h3>Implement secure cloud solutions</h3>
+				<div class="content-items">
+					<h4 id="26">secure app configuration data by using the App Configuration and KeyVault API</h4>
+					<div class="content-section">
+						<p>Create an Azure Key Vault</p>
+						<code>az keyvault create --name MyKeyVault --resource-group myResourceGroup --location australiaeast</code>
+						<p>Then create a new <a href="#6">web app</a></p>
+						<p>Then enable a system-assigned identity in the web app in the azure portal</p>
+						<p>Then add an access policy in the keyvault for the web app so it can access the secrets in the keyvault</p>
+						<p>Then in the code of the web app the keys and secrets can be accessed from the keyvault</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/key-vault/vs-secure-secret-appsettings" target="_blank">Azure Docs</a>
+					</div>
+
+					<h4 id="27">manage keys, secrets, and certificates by using the KeyVault API</h4>
+					<div class="content-section">
+						<p>Create a new Key</p>
+						<code>az keyvault key create --vault-name MyKeyVault --name MyKey</code>
+						<p>Delete a Key</p>
+						<code>az keyvault key delete --vault-name MyKeyVault --name MyKey</code>
+						<p>Add a secret to the Key Vault</p>
+						<code>az keyvault secret set --vault-name MyKeyVault --name MyPassword --value something</code>
+						<p>Update a Secret in the Key Vault</p>
+						<code>az keyvault secret set --vault-name MyKeyVault --name MyPassword --value something2</code>
+						<p>Delete a Secret</p>
+						<code>az keyvault secret delete --vault-name MyKeyVault --name MyPassword</code>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/key-vault/about-keys-secrets-and-certificates" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-gb/cli/azure/keyvault?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/learn/modules/configure-and-manage-azure-key-vault" target="_blank">Azure Learn</a>
+					</div>
+
+					<h4 id="28">implement Managed Identities for Azure resources</h4>
+					<div class="content-section">
+						<p>A managed identity from Azure Active Directory (AAD) allows your app to easily access other AAD-protected resources such as Azure Key Vault. The identity is managed by the Azure platform and does not require you to provision or rotate any secrets</p>
+						<p>A system-assigned identity is tied to your application and is deleted if your app is deleted. An app can only have one system-assigned identity</p>
+						<p>A user-assigned identity is a standalone Azure resource that can be assigned to your app. An app can have multiple user-assigned identities</p>
+						<p>The <a href="#26">secure app configuration data</a> example above uses a managed identity for the app service so that it can be used to connect to the key vault</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/app-service/overview-managed-identity?tabs=dotnet" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview" target="_blank">Azure Docs</a>
+					</div>
+
+				</div>
+
+				<h2>Monitor, troubleshoot, and optimize Azure solutions (10-15%)</h2>
+
+				<hr />
+
+				<h3>Integrate caching and content delivery within solutions</h3>
+				<div class="content-items">
+					<h4 id="29">develop code to implement CDN’s in solutions</h4>
+					<div class="content-section">
+						<p>Create a new CDN Profile</p>
+						<code>az cdn profile create --name MyCdn --resource-group myResourceGroup --location australiaeast --sku Standard_Microsoft</code>
+						<p>Create a https only endpoint</p>
+						<code>az cdn endpoint create -g MyResourceGroup --profile-name MyCdn -n MyEndpoint --no-http --origin www.example.com</code>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/cli/azure/cdn/profile?view=azure-cli-latest#az-cdn-profile-create" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/cli/azure/cdn/endpoint?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
+					</div>
+
+					<h4 id="30">configure cache and expiration policies</h4>
+					<div class="content-section">
+						<p>These can be set in the Caching Rules and Rules Engine sections of a CDN Endpoint</p>
+						<p>The caching rules control how the data is cached based on the query string</p>
+						<p>The rules engine controls various other properties of caching, such as headers, filetypes, URLs, cookies and expiration.  A single endpoint can have multiple rules</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-caching-rules" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-caching-rules-tutorial" target="_blank">Azure Docs</a>
+					</div>
+
+					<h4 id="31">store and retrieve data in Azure Redis cache</h4>
+					<div class="content-section">
+						<p>Create a redis cache</p>
+						<code>az redis create --location australiaeast --name myrediscache --resource-group MyResourceGroup --sku Basic --vm-size c0</code>
+						<p>List redis access keys</p>
+						<code>az redis list-keys -n myrediscache -g MyResourceGroup</code>
+						<p>Below is an example of storing and retrieving an object from redis using the C# redis library</p>
+						<br />
+			<pre><code class="c#">class RedisExample
+{
+	public async Task RunRedisExample()
+	{
+		// Connect to redis
+		ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("myconnectionstring");
+		IDatabase cache = redis.GetDatabase();
+
+		// Store object in cache
+		Employee test = new Employee { Id = "007", Name = "Something", Age = 100 };
+		cache.StringSet("test", JsonConvert.SerializeObject(test));
+
+		// Retrieve object from cache
+		Employee testFromCache = JsonConvert.DeserializeObject&lt;Employee>(cache.StringGet("test"));
+		Console.WriteLine("Employee.Name : " + testFromCache.Name);
+		Console.WriteLine("Employee.Id   : " + testFromCache.Id);
+		Console.WriteLine("Employee.Age  : " + testFromCache.Age);
+	}
+}
+
+class Employee
+{
+	public string Id { get; set; }
+	public string Name { get; set; }
+	public int Age { get; set; }
+}</code></pre>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-dotnet-how-to-use-azure-redis-cache" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/cli/azure/redis?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
+					</div>
+
+				</div>
+
+				<h3>Instrument solutions to support monitoring and logging</h3>
+				<div class="content-items">
+					<h4 id="32">configure instrumentation in an app or service by using Application Insights</h4>
+					<div class="content-section">
+						<p>Application Insights instances can be created and configured in the portal.  Some services, such as azure functions, will have an instance of application insights setup automatically during creation</p>
+						<p>Most services will require an Instrumentation Key to connect to an application insights instance and will have a section in the portal to attach an application insights instance</p>
+						<p>Application insights will capture some information automatically such as http requests.  Custom events can also be created using the C# application insights library</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/asp-net-core" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/website-monitoring" target="_blank">Azure Docs</a>
+					</div>
+
+					<h4 id="33">analyze and troubleshoot solutions by using Azure Monitor</h4>
+					<div class="content-section">
+						<p>The "Logs" and "Failures" sections of application insights can be used to analyse requests, failures, events and other telemetry.  Azure devops or github issues can also be created as work items from within the portal where the exception can be attached to the work item</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/learn/tutorial-runtime-exceptions" target="_blank">Azure Docs</a>
+					</div>
+
+					<h4 id="34">implement Application Insights Web Test and Alerts</h4>
+					<div class="content-section">
+						<p>Web tests can be created in the Availability section of an Application Insights instance that is connected to a service</p>
+						<p>URL Ping tests can be used to tell if a service is currently available.  An interval can be set with retries and the URL can be called from multiple locations.  If there is an error than an alert will be sent</p>
+						<p>Availability tests can also be sent from code</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/monitor-web-app-availability" target="_blank">Azure Docs</a>
+					</div>
+
+					<h4 id="35">implement code that handles transient faults</h4>
+					<div class="content-section">
+						<p>Systems can be unavailable or unreachable due to transient faults such as network problems and timeouts, or subsystems being offline, under load or otherwise non-responsive</p>
+						<p>Retries, timeouts, idempotent requests and patterns like circuit-breaker can mitigate transient faults</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/architecture/best-practices/transient-faults" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/aspnet/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/transient-fault-handling" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/bulkhead" target="_blank">Azure Docs</a>
+					</div>
+
+				</div>
+
+				<h2>Connect to and consume Azure services and third-party services (25-30%)</h2>
+
+				<hr />
+
+				<h3>Develop an App Service Logic App</h3>
+				<div class="content-items">
+					<h4 id="36">create a Logic App</h4>
+					<div class="content-section">
+						<p>Logic apps can be created in the azure portal, in visual studio or by using azure resource manager templates.  The azure cli doesn't provide a way to create logic apps</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/logic-apps/quickstart-create-first-logic-app-workflow" target="_blank">Azure Docs</a>
+					</div>
+
+					<h4 id="37">create a custom connector for Logic Apps</h4>
+					<div class="content-section">
+						<p>Custom connectors can be created to perform custom api requests that aren't provided by any of the pre-built connectors.  Custom api requests can also be performed by using a HttpRequest connector but to be reuseable it might be better to create a custom connector</p>
+						<p>Custom connectors are web APIs that use REST for pluggable interfaces, Swagger metadata format for documentation, and JSON as their data exchange format</p>
+						<p>The first step is creating the app and securing it.  Then an api definition is created which describes the api actions, usually this is in OpenAPI format (swagger)</p>
+						<p>Azure API Management can export OpenAPI files which can be used to create a custom logic app connector that can be used in a logic app</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/logic-apps/custom-connector-overview" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-gb/connectors/custom-connectors/define-blank" target="_blank">Azure Docs</a>
+					</div>
+
+					<h4 id="38">create a custom template for Logic Apps</h4>
+					<div class="content-section">
+						<p>Logic app templates are deployed as an azure resource template.  They can be created from scrath or by modifying an existing logic app template</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-create-logic-apps-from-templates" target="_blank">Azure Docs</a>
+					</div>
+
+				</div>
+
+				<h3>Implement API management</h3>
+				<div class="content-items">
+					<h4 id="39">create an APIM instance</h4>
+					<div class="content-section">
+						<p>The following command will create a new APIM instance</p>
+						<code>az apim create --name MyApim -g MyResourceGroup -l australiaeast --publisher-email email@test.com --publisher-name Microsoft</code>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/cli/azure/apim?view=azure-cli-latest#az-apim-create" target="_blank">Azure Cli Docs</a>
+					</div>
+
+					<h4 id="40">configure authentication for APIs</h4>
+					<div class="content-section">
+						<p>Subscriptions can be created which include a subscription key that must be passed in the headers of the request</p>
+						<p>Client certificates can be used to access the backend apis that the api management instance calls and the api management instance itself can request a certificate from the users calling it as well</p>
+						<p>Active Directory can also be used for client applications in azure or outside users calling the api management instance</p>
+						<p>Oauth2.0 and Openid connect can also be used to secure the api</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-create-subscriptions" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-oauth2" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad" target="_blank">Azure Docs</a>
+					</div>
+
+					<h4 id="41">define policies for APIs</h4>
+					<div class="content-section">
+						<p>Policies allow the publisher to change the behavior of the API through configuration</p>
+						<p>For example an api management route can call an azure function by adding the function route by overriding the http endpoint in the Backend section, then adding the functions Code parameter as a query-string policy in the Inbound Processing section</p>
+						<p>Another example is rate limiting api calls by the callers subscriber key</p>
+						<p>Policies can be global (affecting all api requests) or be set per route</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-policies" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/api-management/policy-samples" target="_blank">Azure Docs</a>
+					</div>
+
+				</div>
+
+				<h3>Develop event-based solutions (Note: Creating event models is in scope)</h3>
+				<div class="content-items">
+					<h4 id="42">implement solutions that use Azure Event Grid</h4>
+					<div class="content-section">
+						<p>Below is a description of each of the event and messaging based solutions.  Events are typically a lightweight notification of a change and a message is data produced by a service to be passed to another service</p>
+						<table>
+							<thead>
+								<tr>
+									<td><b>Service</b></td>
+									<td><b>Type</b></td>
+									<td><b>Description</b></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Event Grid</td>
+									<td>Event</td>
+									<td>Uses a publish-subscribe model. Publishers emit events, but have no expectation about which events are handled. Subscribers decide which events they want to handle.  Lowers costs by eliminating the need for constant polling</td>
+								</tr>
+								<tr>
+									<td>Event Hub</td>
+									<td>Event</td>
+									<td>Event Hubs are more for injesting data, such as telemetry data, at a large scale</td>
+								</tr>
+								<tr>
+									<td>Notification Hub</td>
+									<td>Event</td>
+									<td>For push notifications, such as those used by mobile devices</td>
+								</tr>
+								<tr>
+									<td>Service Bus</td>
+									<td>Message</td>
+									<td>Provides asynchronous queues and topics for services to subscribe to.  The message delivery requires constant polling to handle by a service</td>
+								</tr>
+								<tr>
+									<td>Storage Queue</td>
+									<td>Message</td>
+									<td>Similar to service bus queue but a more lightweight solution with less features</td>
+								</tr>
+							</tbody>
+						</table>
+						<br />
+						<p>Create a new event grid domain</p>
+						<code>az eventgrid domain create -g MyResourceGroup --name myeventgriddomain1 -l australiaeast</code>
+						<p>Create an event grid topic</p>
+						<code>az eventgrid topic create -g MyResourceGroup -l australiaeast --name mytopic</code>
+						<p>List topic access keys</p>
+						<code>az eventgrid topic key list -g MyResourceGroup -n mytopic</code>
+						<p>Create a new subscription that points to an endpoint and receives messages from the created topic</p>
+						<code> az eventgrid event-subscription create -n mysubscription --source-resource-id "/subscriptions/mysubscriptionid/resourceGroups/MyResourceGroup/providers/Microsoft.EventGrid/domains/myeventgriddomain1/topics/mytopic" --endpoint myendpoint</code>
+						<p>The code below will send an event using the C# event grid library</p>
+						<br />
+			<pre><code class="c#">public async Task SendEventGridMessage()
+{
+	// Create topic client
+	TopicCredentials credentials = new TopicCredentials("topicaccesskey");
+	EventGridClient client = new EventGridClient(credentials);
+
+	// Create events
+	List&lt;EventGridEvent> events = new List&lt;EventGridEvent>();
+	events.Add(new EventGridEvent
+	{
+		Id = Guid.NewGuid().ToString(),
+		EventType = "MyEventType",
+		Data = new { TestEventValue = "MyTestValue" },
+		EventTime = DateTime.Now,
+		Subject = "MySubject",
+		DataVersion = "1"
+	});
+
+	// Send events
+	await client.PublishEventsAsync(new Uri("https://mytopic.australiaeast-1.eventgrid.azure.net/api/events").Host, events);
+}</code></pre>
+						<p>The code below will read an event using an azure function with a Http Trigger.  There is also an event grid trigger than can be used instead bypassing the need to deserialize the event grid events</p>
+						<br />
+			<pre><code class="c#">[FunctionName("Function1")]
+public static async Task&lt;IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, ILogger log)
+{
+	string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+
+	EventGridSubscriber subscriber = new EventGridSubscriber();
+
+	var events = subscriber.DeserializeEventGridEvents(requestBody);
+
+	foreach (EventGridEvent receivedEvent in events)
+	{
+		log.LogInformation(receivedEvent.Data.ToString());
+	}
+
+	return new OkObjectResult("OK");
+}</code></pre>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/event-grid/compare-messaging-services" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/event-grid/concepts" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/dotnet/api/overview/azure/eventgrid?view=azure-dotnet" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/cli/azure/eventgrid?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
+					</div>
+
+					<h4 id="43">implement solutions that use Azure Notification Hubs</h4>
+					<div class="content-section">
+						<p>A notification hub can be created in the portal or using the cli by installing the notification hub cli extension</p>
+						<p>This example will send a push notification to the notification hub</p>
+						<br />
+			<pre><code class="c#">public async Task SendNotificationHubMessage()
+{
+	NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString("myconnectionstring", "mynotificationhub");
+	await hub.SendWindowsNativeNotificationAsync("Test Message");
+}</code></pre>
+						<p>The message can then be received on a mobile device by using the appropriate SDK</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/dotnet/api/overview/azure/notification-hubs?view=azure-dotnet" target="_blank">Azure Docs</a>
+						<a href="https://github.com/Azure/azure-notificationhubs-samples" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/notification-hubs/create-notification-hub-azure-cli" target="_blank">Azure Cli Docs</a>
+					</div>
+
+					<h4 id="44">implement solutions that use Azure Event Hub</h4>
+					<div class="content-section">
+						<p>Create a new event hub namespace</p>
+						<code>az eventhubs namespace create -g MyResourceGroup -n myeventhub</code>
+						<p>Create a new event hub</p>
+						<code>az eventhubs eventhub create -g MyResourceGroup -n eventhub1 --namespace-name myeventhub</code>
+						<p>Create a consumer group in the event hub</p>
+						<code>az eventhubs eventhub consumer-group create -g MyResourceGroup --namespace-name myeventhub --eventhub-name eventhub1 -n myconsumergroup</code>
+						<p>Create a new storage container to receive messages</p>
+						<code>az storage container create --name eventdata --account-name mystorage --account-key myaccountkey</code>
+						<p>The example below uses the C# event hub library to setup an event receiver, connect to a storage account to receive checkpoint events and then sends a message and waits for it to be received</p>
+						<br />
+			<pre><code class="c#">public async Task RunEventHubExample()
+{
+	string connectionString = "eventhubconnectionstring";
+
+	// Create a blob container client that the event processor will use as a checkpoint store
+	BlobContainerClient storageClient = new BlobContainerClient("storageconnectionstring", "eventdata");
+
+	// Create an event hub processor to receive messages
+	EventProcessorClient processor = new EventProcessorClient(storageClient, "myconsumergroup", connectionString, "eventhub1");
+
+	// Message handler
+	processor.ProcessEventAsync += (ProcessEventArgs eventArgs) =>
+	{
+	// Print the received event hub event
+		Console.WriteLine("\tReceived event: " + Encoding.UTF8.GetString(eventArgs.Data.Body.ToArray()));
+		return Task.CompletedTask;
+	};
+
+	// Start the processing
+	await processor.StartProcessingAsync();
+
+	// Create event hub client
+	EventHubProducerClient client = new EventHubProducerClient(connectionString, "eventhub1");
+
+	// Create an event
+	EventDataBatch events = await client.CreateBatchAsync();
+	events.TryAdd(new EventData(Encoding.UTF8.GetBytes("My Event")));
+
+	// Send event to event hub
+	await client.SendAsync(events);
+
+	// Wait for 10 seconds for the events to be processed
+	await Task.Delay(TimeSpan.FromSeconds(10));
+
+	// Stop the processing
+	await processor.StopProcessingAsync();
+}</code></pre>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/event-hubs/get-started-dotnet-standard-send-v2" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-quickstart-cli" target="_blank">Azure Cli Docs</a>
+						<a href="https://github.com/Azure/azure-sdk-for-net/blob/master/sdk/eventhub/Microsoft.Azure.EventHubs" target="_blank">Github</a>
+					</div>
+
+				</div>
+
+				<h3>Develop message-based solutions</h3>
+				<div class="content-items">
+					<h4 id="45">implement solutions that use Azure Service Bus</h4>
+					<div class="content-section">
+						<p>Create a new service bus namespace</p>
+						<code>az servicebus namespace create --resource-group MyResourceGroup --name mynamespace --location australiaeast --sku Standard</code>
+						<p>Service bus provides both queues and topics.  Queues are a point-to-point messaging solution and topics are a point-to-many solution</p>
+						<p>Create a queue</p>
+						<code>az servicebus queue create -n myqueue --namespace-name mynamespace -g MyResourceGroup</code>
+						<p>Create a topic</p>
+						<code>az servicebus topic create -n mytopic --namespace-name mynamespace -g MyResourceGroup</code>
+						<p>Create a topic subscription</p>
+						<code>az servicebus topic subscription create -g MyResourceGroup --namespace-name mynamespace --topic-name mytopic -n mysubscription</code>
+						<p>The example below will create a service bus queue message and a topic message and then receices them from the service bus.  The connection string is found in the Shared Access Policies section of the azure portal</p>
+						<br />
+			<pre><code class="c#">class ServiceBusExample
+{
+	string connectionString;
+	QueueClient queueClient;
+	TopicClient topicClient;
+
+	public void SetupServiceBus()
+	{
+		connectionString = "myconnectionstring";
+
+		// Create queue client
+		queueClient = new QueueClient(connectionString, "myqueue");
+
+		// Create topic client
+		topicClient = new TopicClient(connectionString, "mytopic");
+	}
+
+	public async Task SendAndReceiveQueueMessage()
+	{
+		// Setup message for servicebus queue
+		var msg = new { test = "queue message" };
+		Message message = new Message(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(msg)));
+
+		// Create queue message
+		await queueClient.SendAsync(message);
+
+		// Receive and complete message
+		MessageReceiver receiver = new MessageReceiver(connectionString, "myqueue");
+		Message receivedMessage = await receiver.ReceiveAsync();
+		Console.WriteLine(Encoding.UTF8.GetString(receivedMessage.Body));
+		await receiver.CompleteAsync(receivedMessage.SystemProperties.LockToken);
+	}
+
+	public async Task SendAndReceiveTopicMessage()
+	{
+		// Receive and complete message
+		SubscriptionClient client = new SubscriptionClient(connectionString, "mytopic", "mysubscription");
+		client.RegisterMessageHandler(async (msg, cancellationToken) =>
+		{
+			Console.WriteLine(Encoding.UTF8.GetString(msg.Body));
+			await client.CompleteAsync(msg.SystemProperties.LockToken);
+		}, new MessageHandlerOptions(async (e) => { Console.WriteLine("Exception: " + e.Exception.Message); }));
+
+		// Setup message for servicebus topic
+		var msg = new { test = "topic message" };
+		Message message = new Message(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(msg)));
+
+		// Create topic message
+		await topicClient.SendAsync(message);
+
+		// Wait a bit for message to be received
+		await Task.Delay(TimeSpan.FromSeconds(5));
+	}
+}</code></pre>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/cli/azure/servicebus?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
+						<a href="https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.Azure.ServiceBus" target="_blank">Github</a>
+					</div>
+
+					<h4 id="46">implement solutions that use Azure Queue Storage queues</h4>
+					<div class="content-section">
+						<p>Create a new queue in a storage account</p>
+						<code>az storage queue create -n myqueue --account-name mystorage --account-key mykey</code>
+						<p>Send a message to a storage account queue using C# and the Azure.Storage.Queues library, then receive and cancel all messages in the queue</p>
+						<br />
+			<pre><code class="c#">private async Task ImplementSolutionsThatUseAzureQueueStorageQueues()
+{
+	var queueClient = new Azure.Storage.Queues.QueueClient("UseDevelopmentStorage=true", "myqueue");
+	await queueClient.SendMessageAsync("temp");
+
+	foreach (QueueMessage msg in queueClient.ReceiveMessages().Value)
+	{
+		Console.WriteLine(msg.MessageText);
+		await queueClient.DeleteMessageAsync(msg.MessageId, msg.PopReceipt);
+	}
+}</code></pre>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/storage/queues/storage-dotnet-how-to-use-queues" target="_blank">Azure Docs</a>
+						<a href="https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/storage/Azure.Storage.Queues" target="_blank">Github</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<script src="lib/jquery/jquery.min.js"></script>
+		<script src="lib/highlight/highlight.pack.js"></script>
+		<script src="js/site.js"></script>
+	</body>
+</html>
