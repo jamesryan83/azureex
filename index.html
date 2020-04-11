@@ -25,8 +25,8 @@
 							<li><a href="#1">provision VMs</a></li>
 							<li><a href="#2">create ARM templates</a></li>
 							<li><a href="#3">create container images for solutions</a></li>
-							<!-- <li><a href="#4">publish an image to the Azure Container Registry</a></li>
-							<li><a href="#5">run containers by using Azure Container Instance</a></li> -->
+							<!-- <li><a href="#4">publish an image to the Azure Container Registry</a></li> -->
+							<li><a href="#5">run containers by using Azure Container Instance</a></li>
 						</ul>
 					</li>
 					<li>
@@ -195,17 +195,22 @@ CMD node /usr/src/app/index.js</code></pre>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-docker-cli" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli" target="_blank">Azure Docs</a>
-					</div>
+					</div> -->
 
 					<h4 id="5">run containers by using Azure Container Instance</h4>
 					<div class="content-section">
-						<p>TODO</p>
+						<p>The following command will create a container instance from an image</p>
+						<code>az container create -g MyResourceGroup -n mycontainer --image microsoft/aci-helloworld --ports 80 --dns-name-label my-app-1 --location australiaeast</code>
+						<p>List the fully qualified domain name</p>
+						<code>az container show  -g MyResourceGroup -n mycontainer --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" --out table</code>
+						<p>Show the containers logs</p>
+						<code>az container logs -g MyResourceGroup -n mycontainer</code>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-deploy-app" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-us/learn/modules/run-docker-with-azure-container-instances" target="_blank">Azure Learn</a>
-					</div> -->
+					</div>
 
 				</div>
 
