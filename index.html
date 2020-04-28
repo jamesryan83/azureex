@@ -23,8 +23,9 @@
 						<h6>Implement IaaS solutions</h6>
 						<ul class="list-unstyled">
 							<li><a href="#1">provision VMs</a></li>
+							<li><a href="#1b">configure VMs for remote access</a></li>
 							<li><a href="#2">create ARM templates</a></li>
-							<li><a href="#3">create container images for solutions</a></li>
+							<li><a href="#3">create container images for solutions by using Docker</a></li>
 							<!-- <li><a href="#4">publish an image to the Azure Container Registry</a></li> -->
 							<li><a href="#5">run containers by using Azure Container Instance</a></li>
 						</ul>
@@ -35,8 +36,8 @@
 							<li><a href="#6">create an Azure App Service Web App</a></li>
 							<li><a href="#7">enable diagnostics logging</a></li>
 							<li><a href="#8">deploy code to a web app</a></li>
-							<li><a href="#9">configure web app settings</a></li>
-							<li><a href="#10">implement autoscaling rules (schedule, operational/system metrics)</a></li>
+							<li><a href="#9">configure web app settings including SSL, API, and connection strings</a></li>
+							<li><a href="#10">implement autoscaling rules, including scheduled autoscaling, and scaling by operational or system metrics</a></li>
 						</ul>
 					</li>
 					<li>
@@ -57,6 +58,8 @@
 							<li><a href="#16">interact with data using the appropriate SDK</a></li>
 							<li><a href="#17">set the appropriate consistency level for operations</a></li>
 							<li><a href="#18">create Cosmos DB containers</a></li>
+							<li><a href="#18b">implement scaling (partitions, containers)</a></li>
+							<li><a href="#18c">implement server-side programming including stored procedures, triggers, and change feed notifications</a></li>
 						</ul>
 					</li>
 					<li>
@@ -66,6 +69,7 @@
 							<li><a href="#20">set and retrieve properties and metadata</a></li>
 							<li><a href="#21">interact with data using the appropriate SDK</a></li>
 							<li><a href="#22">implement data archiving and retention</a></li>
+							<li><a href="#22b">implement hot, cool, and archive storage</a></li>
 						</ul>
 					</li>
 
@@ -76,6 +80,7 @@
 							<li><a href="#23">implement OAuth2 authentication</a></li>
 							<li><a href="#24">create and implement shared access signatures</a></li>
 							<li><a href="#25">register apps and use Azure Active Directory to authenticate users</a></li>
+							<li><a href="#25b">control access to resources by using role-based access controls (RBAC)</a></li>
 						</ul>
 					</li>
 					<li>
@@ -92,7 +97,7 @@
 						<h6>Integrate caching and content delivery within solutions</h6>
 						<ul class="list-unstyled">
 							<li><a href="#29">develop code to implement CDN’s in solutions</a></li>
-							<li><a href="#30">configure cache and expiration policies</a></li>
+							<li><a href="#30">configure cache and expiration policies for FrontDoor, CDNs, or Redis caches</a></li>
 							<li><a href="#31">store and retrieve data in Azure Redis cache</a></li>
 						</ul>
 					</li>
@@ -100,7 +105,7 @@
 						<h6>Instrument solutions to support monitoring and logging</h6>
 						<ul class="list-unstyled">
 							<li><a href="#32">configure instrumentation in an app or service by using Application Insights</a></li>
-							<li><a href="#33">analyze and troubleshoot solutions by using Azure Monitor</a></li>
+							<li><a href="#33">analyze log data and troubleshoot solutions by using Azure Monitor</a></li>
 							<li><a href="#34">implement Application Insights Web Test and Alerts</a></li>
 							<li><a href="#35">implement code that handles transient faults</a></li>
 						</ul>
@@ -151,10 +156,29 @@
 				<div class="content-items">
 					<h4 id="1">provision VMs</h4>
 					<div class="content-section">
+						<p>The following command will create a new virtual machine</p>
 						<code>az vm create --resource-group myResourceGroup --name myVM --image UbuntuLTS --admin-username azureuser --generate-ssh-keys</code>
+						<code class="ps">$pw = ConvertTo-SecureString "MyPassword" -AsPlainText -Force</code>
+						<code class="ps">$credential = New-Object System.Management.Automation.PSCredential ("azureuser", $pw);</code>
+						<code class="ps">New-AzVM -ResourceGroupName "MyResourceGroup" -Name "MyVm" -Credential $credential</code>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/powershell/module/az.compute/new-azvm?view=azps-3.8.0" target="_blank">Azure Ps Docs</a>
+					</div>
+
+					<h4 id="1b">configure VMs for remote access</h4>
+					<div class="content-section">
+						<p>Create a VM with open SSH (22) and RDP (3389) ports.  Then get the public IP address</p>
+						<code>az vm list-ip-addresses -g MyResourceGroupAutomate -n myVM --output table</code>
+						<code class="ps">Get-AzPublicIPAddress -ResourceGroupName "myResourceGroupAutomate" -Name "myPublicIPAddress" | select IpAddress</code>
+						<p>Then connect using RDP</p>
+						<code>mstsc /v:publicIpAddress</code>
+						<p>Or SSH</p>
+						<code>ssh publicIpAddress</code>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/connect-logon" target="_blank">Azure Docs</a>
 					</div>
 
 					<h4 id="2">create ARM templates</h4>
@@ -167,9 +191,9 @@
 						<a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-tutorial-create-first-template" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="3">create container images for solutions</h4>
+					<h4 id="3">create container images for solutions by using Docker</h4>
 					<div class="content-section">
-						<p>Docker is required to create images.  A dockerfile is also required which describes the image to use as the base image, where the files will be, the directory to run the application from and how to start the application</p>
+						<p>Docker is required to create images.  A dockerfile is also required which describes the image to use as the base image, where the files will be, the working directory to run the application from and how to start the application</p>
 						<br />
 						<pre><code>FROM node:8.9.3-alpine
 RUN mkdir -p /usr/src/app
@@ -201,10 +225,13 @@ CMD node /usr/src/app/index.js</code></pre>
 					<div class="content-section">
 						<p>The following command will create a container instance from an image</p>
 						<code>az container create -g MyResourceGroup -n mycontainer --image microsoft/aci-helloworld --ports 80 --dns-name-label my-app-1 --location australiaeast</code>
+						<code class="ps">New-AzContainerGroup -ResourceGroupName myResourceGroup -Name mycontainer -Image microsoft/aci-helloworld -DnsNameLabel my-app-1 -Port 80 -Location australiaeast</code>
 						<p>List the fully qualified domain name</p>
 						<code>az container show  -g MyResourceGroup -n mycontainer --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" --out table</code>
+						<code class="ps">Get-AzContainerGroup -ResourceGroupName myResourceGroup -Name mycontainer | select Fqdn</code>
 						<p>Show the containers logs</p>
 						<code>az container logs -g MyResourceGroup -n mycontainer</code>
+						<code class="ps">Get-AzContainerInstanceLog -ResourceGroupName myResourceGroup -ContainerGroupName mycontainer</code>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview" target="_blank">Azure Docs</a>
@@ -220,19 +247,24 @@ CMD node /usr/src/app/index.js</code></pre>
 					<div class="content-section">
 						<p>First create a resource group</p>
 						<code>az group create --location australiaeast --name myResourceGroup</code>
+						<code class="ps">New-AzResourceGroup -Name "MyResourceGroup" -Location "australiaeast"</code>
 						<p>Then create an app service plan</p>
 						<code>az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku FREE</code>
+						<code class="ps">New-AzAppServicePlan -ResourceGroupName "MyResourceGroup" -Name "myAppServicePlan" -Location "australiaeast" -Tier "Free"</code>
 						<p>Then create the web app.  The webapp --name value needs to be globally unique, so that no-one else with an azure subsrciption has the same name</p>
 						<code>az webapp create --name mywebapp --resource-group myResourceGroup --plan myAppServicePlan</code>
+						<code class="ps">New-AzWebApp -Name "mywebapp -ResourceGroupName "MyResourceGroup"" -AppServicePlan "myAppServicePlan"</code>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/app-service/scripts/cli-deploy-ftp" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/powershell/module/az.websites/new-azwebapp?view=azps-3.8.0" target="_blank">Azure Ps Docs</a>
 					</div>
 
 					<h4 id="7">enable diagnostics logging</h4>
 					<div class="content-section">
 						<p>This will enable webapp logging to the filesystem</p>
 						<code>az webapp log config --name mywebapp --resource-group myResourceGroup --application-logging true --detailed-error-messages true --failed-request-tracing true --web-server-logging filesystem</code>
+						<code class="ps">Set-AzWebApp -RequestTracingEnabled $True -HttpLoggingEnabled $True -DetailedErrorLoggingEnabled $True -ResourceGroupName "MyResourceGroup" -Name "myapp"</code>
 						<p>This will enable container webapp logging to the filesystem from stdout/stderr</p>
 						<code>az webapp log config --docker-container-logging on --name MyWebapp --resource-group MyResourceGroup</code>
 						<p>Setting up logging to application insights from the azure cli requires a cli extension to be installed</p>
@@ -240,6 +272,7 @@ CMD node /usr/src/app/index.js</code></pre>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/app-service/scripts/cli-monitor" target="_blank">Azure Cli Docs</a>
 						<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/create-new-resource#azure-cli-preview" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/app-service/scripts/powershell-monitor" target="_blank">Azure Ps Docs</a>
 						<a href="https://docs.microsoft.com/en-us/learn/modules/capture-application-logs-app-service" target="_blank">Azure Learn</a>
 					</div>
 
@@ -248,29 +281,66 @@ CMD node /usr/src/app/index.js</code></pre>
 						<p>Setup deployment from a Github repository, where token is the access token and gitrepo is the url to the github repository.  The git access token is only required for private repositories</p>
 						<code>az webapp deployment source config --name mywebapp --resource-group myResourceGroup --repo-url gitrepo --branch master --git-token token</code>
 						<p>Adding --manual-integration to the above command will disable continuous deployment from github</p>
+						<code class="ps">$PropertiesObject = @{ repoUrl = "gitrepo"; branch = "master"; }</code>
+						<code class="ps">Set-AzResource -PropertyObject $PropertiesObject -ResourceGroupName "MyResourceGroup" -ResourceType Microsoft.Web/sites/sourcecontrols -ResourceName myapp/web -ApiVersion 2015-08-01 -Force</code>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/app-service/scripts/cli-continuous-deployment-github" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/app-service/scripts/powershell-deploy-github" target="_blank">Azure Ps Docs</a>
 					</div>
 
-					<h4 id="9">configure web app settings</h4>
+					<h4 id="9">configure web app settings including SSL, API, and connection strings</h4>
 					<div class="content-section">
 						<p>List current webapp settings</p>
 						<code>az webapp config appsettings list -g MyResourceGroup --name mywebapp --output table</code>
+						<code class="ps">(Get-AzWebApp -ResourceGroupName "MyResourceGroup" -Name "mywebapp").SiteConfig.AppSettings</code>
 						<p>Create a new webapp configuration setting</p>
 						<code>az webapp config appsettings set -g MyResourceGroup --name mywebapp --settings TEST_SETTING=something</code>
+						<code class="ps">$app = Get-AzWebApp -ResourceGroupName "MyResourceGroup" -Name "mywebapp"</code>
+						<code class="ps">$appSettings = $app.SiteConfig.AppSettings</code>
+						<code class="ps">$hash = @{}</code>
+						<code class="ps">ForEach ($kvp in $appSettings) { $hash[$kvp.Name] = $kvp.Value }</code>
+						<code class="ps">$hash['NewKey'] = "NewValue"</code>
+						<code class="ps">Set-AzWebApp -ResourceGroupName "MyResourceGroup" -Name "mywebapp" -AppSettings $hash</code>
 						<p>Delete the setting that was created above</p>
 						<code>az webapp config appsettings delete -g MyResourceGroup --name mywebapp --setting-names TEST_SETTING</code>
+						<p>List the SSL Certificates for a webapp</p>
+						<code>az webapp config ssl list -g MyResourceGroup</code>
+						<code class="ps">Get-AzWebAppCertificate -ResourceGroupName "MyResourceGroup"</code>
+						<p>List the Connection Strings for a webapp</p>
+						<code>az webapp config connection-string list -g MyResourceGroup -n mywebapp</code>
+						<code class="ps">(Get-AzWebApp -ResourceGroupName "MyResourceGroup" -Name "mywebapp").SiteConfig.ConnectionStrings</code>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/cli/azure/webapp/config/appsettings?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/powershell/module/az.websites/get-azwebapp?view=azps-3.8.0" target="_blank">Azure Ps Docs</a>
 					</div>
 
-					<h4 id="10">implement autoscaling rules (schedule, operational/system metrics)</h4>
+					<h4 id="10">implement autoscaling rules, including scheduled autoscaling, and scaling by operational or system metrics</h4>
 					<div class="content-section">
-						<p><b>Scaling up</b> is adding additional CPU, RAM, Disk space etc by upgrading the App Service Plan to a higher level</p>
-						<p><b>Scaling out</b> is adding additional instances of an App Service</p>
-						<p><b>Autoscaling</b> allows additional instances to be added or removed automatically based on the amount of CPU, RAM etc being used or on a schedule</p>
+						<table>
+							<thead>
+								<tr>
+									<td><b>Type</b></td>
+									<td><b>Description</b></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Scaling up</td>
+									<td>Adding additional CPU, RAM, Disk space etc by upgrading the App Service Plan to a higher level</td>
+								</tr>
+								<tr>
+									<td>Scaling out</td>
+									<td>Adding additional instances of an App Service</td>
+								</tr>
+								<tr>
+									<td>Autoscaling</td>
+									<td>Allows additional instances to be added or removed automatically based on the amount of CPU, RAM etc being used, on a schedule or on other various system metrics</td>
+								</tr>
+							</tbody>
+						</table>
+						<br />
 						<p>Autoscaling works only on Standard app service plans or higher</p>
 					</div>
 					<div class="content-section-docs">
@@ -286,8 +356,10 @@ CMD node /usr/src/app/index.js</code></pre>
 					<div class="content-section">
 						<p>First create a storage account</p>
 						<code>az storage account create -n mystorage -g MyResourceGroup -l australiaeast --sku Standard_LRS</code>
+						<code class="ps">New-AzStorageAccount -ResourceGroupName "MyResourceGroup" -Name "mystorage" -Location "australiaeast" -SkuName Standard_ZRS</code>
 						<p>Then create a C# function app with Http input/output bindings on a consumption plan from a Github repository.  This will automatically include an application insights instance</p>
 						<code>az functionapp create --name myfunctionapp --storage-account mystorage --consumption-plan-location australiaeast --resource-group MyResourceGroup --deployment-source-url https://github.com/Azure-Samples/functions-quickstart.git --deployment-source-branch master --functions-version 2</code>
+						<code class="ps">Powershell doesn't support creating function apps</code>
 						<p>In a C# azure function the http input request query string parameters can be accessed like this</p>
 						<code>string name = req.GetQueryNameValuePairs()</code>
 						<p>The input body can be accessed like this</p>
@@ -547,6 +619,44 @@ public class Person
 						<a href="https://docs.microsoft.com/en-gb/azure/cosmos-db/sql-api-get-started#CreateColl" target="_blank">Azure Docs</a>
 					</div>
 
+
+					<h4 id="18b">implement scaling (partitions, containers)</h4>
+					<div class="content-section">
+						<p>In Azure Cosmos DB, a container is the fundamental unit of scalability. Data that's added to the container and the throughput that you provision on the container are automatically (horizontally) partitioned across a set of logical partitions. Data and throughput are partitioned based on the partition key you specify for the Azure Cosmos container</p>
+						<p>It's the best practice to have a partition key with many distinct values, such as hundreds or thousands. The goal is to distribute your data and workload evenly across the items associated with these partition key values.</p>
+						<p>A Partition Key must be provided when creating a container</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-gb/azure/cosmos-db/partitioning-overview" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-gb/azure/cosmos-db/scaling-throughput" target="_blank">Azure Docs</a>
+					</div>
+
+					<h4 id="18c">implement server-side programming including stored procedures, triggers, and change feed notifications</h4>
+					<div class="content-section">
+						<p>When using the SQL API in Azure Cosmos DB, you can write stored procedures, triggers, and user-defined functions (UDFs) in the JavaScript language. You can write your logic in JavaScript that executed inside the database engine</p>
+						<p>The following is a stored procedure that will return all documents from a container</p>
+						<br />
+						<pre><code class="cs">function sample() {
+	var collection = getContext().getCollection();
+
+	var isAccepted = getContext().getCollection().queryDocuments(collection.getSelfLink(),
+		'SELECT * FROM Container1', function (err, documents, options) {
+		if (err) throw err;
+
+		var response = getContext().getResponse();
+		response.setBody(JSON.stringify(documents));
+	});
+
+	if (!isAccepted) throw new Error('The query was not accepted by the server.');
+}</code></pre>
+						<p>Azure Cosmos DB supports pre-triggers and post-triggers. Pre-triggers are executed before modifying a database item and post-triggers are executed after modifying a database item.  Pre-triggers cannot have any input parameters</p>
+						<p>User-defined functions (UDFs) are used to extend the SQL API query language syntax and implement custom business logic easily. They can be called only within queries. UDFs do not have access to the context object and are meant to be used as compute only JavaScript</p>
+						<p>Change feed support in Azure Cosmos DB works by listening to an Azure Cosmos container for any changes. It then outputs the sorted list of documents that were changed in the order in which they were modified</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-gb/azure/cosmos-db/stored-procedures-triggers-udfs" target="_blank">Azure Docs</a>
+					</div>
+
 				</div>
 
 				<h3>Develop solutions that use blob storage</h3>
@@ -555,15 +665,23 @@ public class Person
 					<div class="content-section">
 						<p>Create a storage account with locally redundant storage</p>
 						<code>az storage account create -n mystorage -g MyResourceGroup -l australiaeast --sku Standard_LRS</code>
+						<code class="ps">New-AzStorageAccount -ResourceGroupName "MyResourceGroup" -Name "mystorage" -Location "australiaeast" -SkuName Standard_LRS</code>
 						<p>The get the storage account keys</p>
 						<code>az storage account keys list -n mystorage</code>
+						<code class="ps">Get-AzStorageAccountKey -ResourceGroupName "MyResourceGroup" -Name "mystoragejr"</code>
 						<p>Then create 2 containers (container1 and container2)</p>
 						<code>az storage container create --name container1 --account-name mystorage --account-key mykey</code>
 						<code>az storage container create --name container2 --account-name mystorage --account-key mykey</code>
+						<code class="ps">$key = ((Get-AzStorageAccountKey -ResourceGroupName "MyResourceGroup" -Name "mystorage") | Where-Object {$_.KeyName -eq "key1"}).Value</code>
+						<code class="ps">$context = New-AzStorageContext -StorageAccountName "mystorage" -StorageAccountKey $key</code>
+						<code class="ps">New-AzStorageContainer -Name "mycontainer1" -Context $context</code>
+						<code class="ps">New-AzStorageContainer -Name "mycontainer2" -Context $context</code>
 						<p>Then upload a file from your computer to container1</p>
 						<code>az storage blob upload -f "C:\path\to\file\test.txt" -c container1 -n test.txt --account-name mystorage --account-key mykey</code>
+						<code class="ps">Set-AzStorageBlobContent -Container "mycontainer" -File "test.txt" -Blob "test.txt" -Context $context</code>
 						<p>Then copy a single blob from one container to another</p>
 						<code>az storage blob copy start --source-blob test.txt --source-container container1 --destination-blob "copy of blob test.txt" --destination-container container2 --account-name mystorage --account-key mykey</code>
+						<code class="ps">Start-AzStorageBlobCopy -SrcBlob "test.txt" -SrcContainer "mycontainer" -DestContainer "mycontainer2" -Context $context</code>
 						<p>Azure AZCopy can also be used to move blob storage items between storage accounts</p>
 					</div>
 					<div class="content-section-docs">
@@ -571,18 +689,23 @@ public class Person
 						<a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-copy" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs#copy-blobs-between-storage-accounts" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-us/learn/modules/copy-blobs-from-command-line-and-code" target="_blank">Azure Learn</a>
+						<a href="https://docs.microsoft.com/en-us/powershell/module/az.storage/?view=azps-3.8.0" target="_blank">Azure Ps Docs</a>
 					</div>
 
 					<h4 id="20">set and retrieve properties and metadata</h4>
 					<div class="content-section">
 						<p>Add a metadata property to a container</p>
 						<code>az storage container metadata update -n container1 --metadata testvalue=something --account-name mystorage --account-key mykey</code>
+						<code class="ps">Update-AzRmStorageContainer -ResourceGroupName "MyResourceGroup" -AccountName "mystorage" -ContainerName "mycontainer" -Metadata @{testvalue="something"}</code>
 						<p>List the current metadata values of a container</p>
 						<code>az storage container metadata show -n container1 --account-name mystorage --account-key mykey</code>
+						<code class="ps">(Get-AzStorageContainer -Name "mycontainer" -Context $context).BlobContainerProperties.Metadata</code>
 						<p>Add a metadata property to a single blob</p>
 						<code>az storage blob metadata update -n test.txt -c container1 --metadata avalue=test1 --account-name mystorage --account-key mykey</code>
+						<code class="ps">Set-AzStorageBlobContent -Container "mycontainer" -File "test.txt" -Blob "test.txt" -Metadata @{testvalue="something"} -Context $context</code>
 						<p>List metadata for a single blob</p>
 						<code>az storage blob metadata show -c container1 -n test.txt --account-name mystorage --account-key mykey</code>
+						<code class="ps">(Get-AzStorageBlob -Blob "test.txt" -Container "mycontainer" -Context $context).BlobProperties.Metadata</code>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/cli/azure/storage/container/metadata?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
@@ -633,6 +756,15 @@ public class Person
 						<a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-rehydration" target="_blank">Azure Docs</a>
 					</div>
 
+					<h4 id="22b">implement hot, cool, and archive storage</h4>
+					<div class="content-section">
+						<p>Change hot storage tier to cool</p>
+						<code>az storage account update -n mystorage --access-tier cool</code>
+						<code class="ps">Set-AzStorageAccount -ResourceGroupName "MyResourceGroup" -Name "mystorage" -AccessTier Cool</code>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-storage-tiers?tabs=azure-portal" target="_blank">Azure Docs</a>
+					</div>
 				</div>
 
 				<h2>Implement Azure security (15-20%)</h2>
@@ -700,6 +832,7 @@ else
 					<div class="content-section">
 						<p>Create a shared access signature for a storage container</p>
 						<code>az storage container generate-sas -n container1 --account-name mystorage --account-key mykey</code>
+						<code class="ps">New-AzStorageContainerSASToken -Name "mycontainer" -Context $context</code>
 						<p>Shared access signatures can also be generated in the portal, storage emulator and C#</p>
 						<br />
 						<pre><code>private async Task StorageSASExample()
@@ -747,8 +880,82 @@ else
 						<p>Active Directory authentication integration can then be added in Visual Studio to an existing project by adding it as a Connected Service and providing the Client ID from the app that was registered in the portal</p>
 					</div>
 					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-whatis" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/vs-active-directory-add-connected-service" target="_blank">Azure Docs</a>
+					</div>
+
+
+					<h4 id="25b">control access to resources by using role-based access controls (RBAC)</h4>
+					<div class="content-section">
+						<p>A role is a set of permissions.  Role Based Access Control (RBAC) and Azure AD roles are not the same thing</p>
+					<p>Azure resources and Azure AD have independent permission systems. Azure RBAC roles are used to manage access to virtual machines, storage, and other Azure resources. Azure AD roles are used to manage access to Azure AD resources, such as user accounts and passwords</p>
+					<p>RBAC Roles can be assigned to the following</p>
+					<table>
+						<thead>
+							<tr>
+								<td width=130><b>Type</b></td>
+								<td><b>Description</b></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>User</td>
+								<td>An individual who has a profile in Azure Active Directory</td>
+							</tr>
+							<tr>
+								<td>Group</td>
+								<td>A set of users created in Azure Active Directory</td>
+							</tr>
+							<tr>
+								<td>Service principals</td>
+								<td>A security identity used by applications or services to access specific Azure resources</td>
+							</tr>
+							<tr>
+								<td>Managed identity</td>
+								<td>An identity in Azure Active Directory that is automatically managed by Azure</td>
+							</tr>
+						</tbody>
+					</table>
+					<p>And they can be scoped to Subscriptions, Resource Groups or Individual Resources</p>
+					<p>This will return a list of the available roles</p>
+					<code>az role definition list --query [].roleName</code>
+					<code class="ps">Get-AzRoleDefinition | Select Name</code>
+					<p>This will return a list of the available actions within the Virtual Machine Contributor role</p>
+					<code class="ps">Get-AzRoleDefinition -Name "Virtual Machine Contributor" | Select Actions | ConvertTo-Json</code>
+					<p>Creating a new role in a subscription requires a definition like the one below</p>
+					<br />
+					<pre><code class="js">{
+	"Name": "MyRole",
+	"IsCustom": true,
+	"Description": "Can monitor and restart virtual machines.",
+	"Actions": [
+		"Microsoft.Storage/*/read",
+		"Microsoft.Network/*/read",
+		"Microsoft.Compute/*/read",
+		"Microsoft.Compute/virtualMachines/start/action",
+		"Microsoft.Compute/virtualMachines/restart/action",
+		"Microsoft.Authorization/*/read",
+		"Microsoft.ResourceHealth/availabilityStatuses/read",
+		"Microsoft.Resources/subscriptions/resourceGroups/read",
+		"Microsoft.Insights/alertRules/*",
+		"Microsoft.Support/*"
+	],
+	"NotActions": [],
+	"DataActions": [],
+	"NotDataActions": [],
+	"AssignableScopes": [
+		"/subscriptions/MySubscriptionId"
+	]
+}</code></pre>
+					<p>Then the role can be created in Azure using the following command</p>
+					<code>az role definition create C:\path\to\file\my-role.json</code>
+					<code class="ps">New-AzRoleDefinition -InputFile "my-role.json"</code>
+					<p>By default, administrators with the Owner or User Access Administrator roles have permissions to create and manage custom roles.  The Microsoft.Authorization/roleDefinitions/write permission allows updating of roles</p>
+					</div>
+					<div class="content-section-docs">
+						<a href="https://docs.microsoft.com/en-us/azure/role-based-access-control/overview" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli" target="_blank">Azure Cli Docs</a>
 					</div>
 				</div>
 
@@ -758,6 +965,8 @@ else
 					<div class="content-section">
 						<p>Create an Azure Key Vault</p>
 						<code>az keyvault create --name MyKeyVault --resource-group myResourceGroup --location australiaeast</code>
+						<code class="ps">New-AzKeyVault -ResourceGroupName "MyResourceGroup" -Name "mykeyvault" -Location "australiaeast"</code>
+						<code class="ps">Set-AzKeyVaultAccessPolicy -VaultName 'mykeyvault' -ObjectId "user-pricipal-objectid" -PermissionsToKeys create,import,delete,list -PermissionsToSecrets get,list,set,delete -PassThru</code>
 						<p>Then create a new <a href="#6">web app</a></p>
 						<p>Then enable a system-assigned identity in the web app in the azure portal</p>
 						<p>Then add an access policy in the keyvault for the web app so it can access the secrets in the keyvault</p>
@@ -772,19 +981,27 @@ else
 					<div class="content-section">
 						<p>Create a new Key</p>
 						<code>az keyvault key create --vault-name MyKeyVault --name MyKey</code>
+						<code class="ps">Add-AzKeyVaultKey -VaultName "mykeyvault" -Name "mykey" -Destination "Software"</code>
 						<p>Delete a Key</p>
 						<code>az keyvault key delete --vault-name MyKeyVault --name MyKey</code>
+						<code class="ps">Remove-AzKeyVaultKey -VaultName "mykeyvault" -Name "mykey"</code>
 						<p>Add a secret to the Key Vault</p>
 						<code>az keyvault secret set --vault-name MyKeyVault --name MyPassword --value something</code>
+						<code class="ps">$Secret = ConvertTo-SecureString -String "mypassword" -AsPlainText -Force</code>
+						<code class="ps">Set-AzKeyVaultSecret -VaultName "mykeyvault" -Name "mysecret" -SecretValue $Secret</code>
 						<p>Update a Secret in the Key Vault</p>
 						<code>az keyvault secret set --vault-name MyKeyVault --name MyPassword --value something2</code>
+						<code class="ps">Update-AzKeyVaultSecret -VaultName "mykeyvault" -Name "mysecret" -Expires (Get-Date).AddYears(1).ToUniversalTime()</code>
 						<p>Delete a Secret</p>
 						<code>az keyvault secret delete --vault-name MyKeyVault --name MyPassword</code>
+						<code class="ps">Remove-AzKeyVaultSecret -VaultName "mykeyvault" -Name "mysecret"</code>
+						<p>TODO certificates</p>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/key-vault/about-keys-secrets-and-certificates" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-gb/cli/azure/keyvault?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
 						<a href="https://docs.microsoft.com/en-us/learn/modules/configure-and-manage-azure-key-vault" target="_blank">Azure Learn</a>
+						<a href="https://docs.microsoft.com/en-us/powershell/module/az.keyvault/?view=azps-3.8.0" target="_blank">Azure Ps Docs</a>
 					</div>
 
 					<h4 id="28">implement Managed Identities for Azure resources</h4>
@@ -811,31 +1028,38 @@ else
 					<div class="content-section">
 						<p>Create a new CDN Profile</p>
 						<code>az cdn profile create --name MyCdn --resource-group myResourceGroup --location australiaeast --sku Standard_Microsoft</code>
+						<code class="ps">New-AzCdnProfile -ResourceGroupName "MyResourceGroup" -ProfileName "mycdn" -Location "australiaeast" -Sku Standard_Microsoft</code>
 						<p>Create a https only endpoint</p>
 						<code>az cdn endpoint create -g MyResourceGroup --profile-name MyCdn -n MyEndpoint --no-http --origin www.example.com</code>
+						<code class="ps">New-AzCdnEndpoint -ResourceGroupName "MyResourceGroup" -ProfileName "mycdn" -Location "australiaeast" -EndpointName "myendpoint" -OriginName "example" -OriginHostName "www.example.com" -IsHttpAllowed $false</code>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/cli/azure/cdn/profile?view=azure-cli-latest#az-cdn-profile-create" target="_blank">Azure Cli Docs</a>
 						<a href="https://docs.microsoft.com/en-us/cli/azure/cdn/endpoint?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/powershell/module/az.cdn/?view=azps-3.8.0#cdn" target="_blank">Azure Ps Docs</a>
 					</div>
 
-					<h4 id="30">configure cache and expiration policies</h4>
+					<h4 id="30">configure cache and expiration policies for FrontDoor, CDNs, or Redis caches</h4>
 					<div class="content-section">
 						<p>These can be set in the Caching Rules and Rules Engine sections of a CDN Endpoint</p>
 						<p>The caching rules control how the data is cached based on the query string</p>
 						<p>The rules engine controls various other properties of caching, such as headers, filetypes, URLs, cookies and expiration.  A single endpoint can have multiple rules</p>
+						<p>TODO</p>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-caching-rules" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-caching-rules-tutorial" target="_blank">Azure Docs</a>
+						<a href="https://docs.microsoft.com/en-us/powershell/module/az.rediscache/?view=azps-3.8.0#redis_cache" target="_blank">Azure Ps Docs</a>
 					</div>
 
 					<h4 id="31">store and retrieve data in Azure Redis cache</h4>
 					<div class="content-section">
 						<p>Create a redis cache</p>
 						<code>az redis create --location australiaeast --name myrediscache --resource-group MyResourceGroup --sku Basic --vm-size c0</code>
+						<code class="ps">New-AzRedisCache -ResourceGroupName "MyResourceGroup" -Name "MyCache" -Location "australiaeast"</code>
 						<p>List redis access keys</p>
 						<code>az redis list-keys -n myrediscache -g MyResourceGroup</code>
+						<code class="ps">Get-AzRedisCacheKey -ResourceGroupName "MyResourceGroup" -Name "MyCache"</code>
 						<p>Below is an example of storing and retrieving an object from redis using the C# redis library</p>
 						<br />
 			<pre><code class="c#">class RedisExample
@@ -885,9 +1109,10 @@ class Employee
 						<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/website-monitoring" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="33">analyze and troubleshoot solutions by using Azure Monitor</h4>
+					<h4 id="33">analyze log data and troubleshoot solutions by using Azure Monitor</h4>
 					<div class="content-section">
 						<p>The "Logs" and "Failures" sections of application insights can be used to analyse requests, failures, events and other telemetry.  Azure devops or github issues can also be created as work items from within the portal where the exception can be attached to the work item</p>
+						<p>The Visual Studio snapshot debugger can also be used to diagnose problems by taking a snapshot of the current running application and its variables at the time of the exception</p>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/learn/tutorial-runtime-exceptions" target="_blank">Azure Docs</a>
@@ -959,9 +1184,11 @@ class Employee
 					<div class="content-section">
 						<p>The following command will create a new APIM instance</p>
 						<code>az apim create --name MyApim -g MyResourceGroup -l australiaeast --publisher-email email@test.com --publisher-name Microsoft</code>
+						<code class="ps">New-AzApiManagement -ResourceGroupName "MyResourceGroup" -Name "myapi" -Location "australiaeast" -Organization "Test" -AdminEmail "test@email.com"</code>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/cli/azure/apim?view=azure-cli-latest#az-apim-create" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/powershell/module/az.apimanagement/?view=azps-3.8.0#api_management" target="_blank">Azure Ps Docs</a>
 					</div>
 
 					<h4 id="40">configure authentication for APIs</h4>
@@ -1035,12 +1262,16 @@ class Employee
 						<br />
 						<p>Create a new event grid domain</p>
 						<code>az eventgrid domain create -g MyResourceGroup --name myeventgriddomain1 -l australiaeast</code>
+						<code class="ps">New-AzEventGridDomain -ResourceGroupName "MyResourceGroup" -Name "myeventgriddomain1" -Location "australiaeast"</code>
 						<p>Create an event grid topic</p>
 						<code>az eventgrid topic create -g MyResourceGroup -l australiaeast --name mytopic</code>
+						<code class="ps">New-AzEventGridTopic -ResourceGroupName "MyResourceGroup" -Name "mytopic" -Location "australiaeast"</code>
 						<p>List topic access keys</p>
 						<code>az eventgrid topic key list -g MyResourceGroup -n mytopic</code>
+						<code class="ps">Get-AzEventGridTopicKey -ResourceGroup "MyResourceGroup" -Name "mytopic"</code>
 						<p>Create a new subscription that points to an endpoint and receives messages from the created topic</p>
 						<code> az eventgrid event-subscription create -n mysubscription --source-resource-id "/subscriptions/mysubscriptionid/resourceGroups/MyResourceGroup/providers/Microsoft.EventGrid/domains/myeventgriddomain1/topics/mytopic" --endpoint myendpoint</code>
+						<code class="ps">New-AzEventGridSubscription -ResourceGroup "MyResourceGroup" -TopicName "mytopic" -Endpoint "myendpoint" -EventSubscriptionName "mysubscription"</code>
 						<p>The code below will send an event using the C# event grid library</p>
 						<br />
 			<pre><code class="c#">public async Task SendEventGridMessage()
@@ -1088,6 +1319,7 @@ public static async Task&lt;IActionResult> Run([HttpTrigger(AuthorizationLevel.F
 						<a href="https://docs.microsoft.com/en-us/azure/event-grid/concepts" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-us/dotnet/api/overview/azure/eventgrid?view=azure-dotnet" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-us/cli/azure/eventgrid?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
+						<a href="https://docs.microsoft.com/en-us/powershell/module/az.eventgrid/?view=azps-3.8.0#event_grid" target="_blank">Azure Ps Docs</a>
 					</div>
 
 					<h4 id="43">implement solutions that use Azure Notification Hubs</h4>
@@ -1112,12 +1344,16 @@ public static async Task&lt;IActionResult> Run([HttpTrigger(AuthorizationLevel.F
 					<div class="content-section">
 						<p>Create a new event hub namespace</p>
 						<code>az eventhubs namespace create -g MyResourceGroup -n myeventhub</code>
+						<code class="ps">New-AzEventHubNamespace -ResourceGroupName "MyResourceGroup" -NamespaceName "mynamespace" -Location "australiaeast"</code>
 						<p>Create a new event hub</p>
 						<code>az eventhubs eventhub create -g MyResourceGroup -n eventhub1 --namespace-name myeventhub</code>
+						<code class="ps">New-AzEventHub -ResourceGroupName "MyResourceGroup" -NamespaceName "mynamespace" -Name "myeventhub"</code>
 						<p>Create a consumer group in the event hub</p>
 						<code>az eventhubs eventhub consumer-group create -g MyResourceGroup --namespace-name myeventhub --eventhub-name eventhub1 -n myconsumergroup</code>
+						<code class="ps">New-AzEventHubConsumerGroup -ResourceGroupName "MyResourceGroup" -NamespaceName "mynamespace" -EventHubName "myeventhub" -ConsumerGroupName "MyConsumerGroup"</code>
 						<p>Create a new storage container to receive messages</p>
 						<code>az storage container create --name eventdata --account-name mystorage --account-key myaccountkey</code>
+						<code class="ps">New-AzStorageContainerSASToken -Name "mycontainer" -Context $context</code>
 						<p>The example below uses the C# event hub library to setup an event receiver, connect to a storage account to receive checkpoint events and then sends a message and waits for it to be received</p>
 						<br />
 			<pre><code class="c#">public async Task RunEventHubExample()
@@ -1162,6 +1398,7 @@ public static async Task&lt;IActionResult> Run([HttpTrigger(AuthorizationLevel.F
 						<a href="https://docs.microsoft.com/en-us/azure/event-hubs/get-started-dotnet-standard-send-v2" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-quickstart-cli" target="_blank">Azure Cli Docs</a>
 						<a href="https://github.com/Azure/azure-sdk-for-net/blob/master/sdk/eventhub/Microsoft.Azure.EventHubs" target="_blank">Github</a>
+						<a href="https://docs.microsoft.com/en-us/powershell/module/az.eventhub/?view=azps-3.8.0#event_hub" target="_blank">Azure Ps Docs</a>
 					</div>
 
 				</div>
@@ -1172,13 +1409,17 @@ public static async Task&lt;IActionResult> Run([HttpTrigger(AuthorizationLevel.F
 					<div class="content-section">
 						<p>Create a new service bus namespace</p>
 						<code>az servicebus namespace create --resource-group MyResourceGroup --name mynamespace --location australiaeast --sku Standard</code>
+						<code class="ps">New-AzServiceBusNamespace -ResourceGroupName "MyResourceGroup" -Name "mynamespace" -Location "australiaeast" -SkuName "Standard"</code>
 						<p>Service bus provides both queues and topics.  Queues are a point-to-point messaging solution and topics are a point-to-many solution</p>
 						<p>Create a queue</p>
 						<code>az servicebus queue create -n myqueue --namespace-name mynamespace -g MyResourceGroup</code>
+						<code class="ps">New-AzServiceBusQueue -ResourceGroup "MyResourceGroup" -NamespaceName "mynamespace" -QueueName "myqueue" -EnablePartitioning $True</code>
 						<p>Create a topic</p>
 						<code>az servicebus topic create -n mytopic --namespace-name mynamespace -g MyResourceGroup</code>
+						<code class="ps">New-AzServiceBusTopic -ResourceGroup "MyResourceGroup" -NamespaceName "mynamespace" -TopicName "mytopic" -EnablePartitioning $True</code>
 						<p>Create a topic subscription</p>
 						<code>az servicebus topic subscription create -g MyResourceGroup --namespace-name mynamespace --topic-name mytopic -n mysubscription</code>
+						<code class="ps">New-AzServiceBusSubscription -ResourceGroup "MyResourceGroup" -NamespaceName "mynamespace" -TopicName "mytopic" -SubscriptionName "mysubscription"</code>
 						<p>The example below will create a service bus queue message and a topic message and then receices them from the service bus.  The connection string is found in the Shared Access Policies section of the azure portal</p>
 						<br />
 			<pre><code class="c#">class ServiceBusExample
@@ -1239,12 +1480,14 @@ public static async Task&lt;IActionResult> Run([HttpTrigger(AuthorizationLevel.F
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/cli/azure/servicebus?view=azure-cli-latest" target="_blank">Azure Cli Docs</a>
 						<a href="https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.Azure.ServiceBus" target="_blank">Github</a>
+						<a href="https://docs.microsoft.com/en-us/powershell/module/az.servicebus/?view=azps-3.8.0#service_bus" target="_blank">Azure Ps Docs</a>
 					</div>
 
 					<h4 id="46">implement solutions that use Azure Queue Storage queues</h4>
 					<div class="content-section">
 						<p>Create a new queue in a storage account</p>
 						<code>az storage queue create -n myqueue --account-name mystorage --account-key mykey</code>
+						<code class="ps">New-AzStorageQueue -Name "myqueue" -Context $context</code>
 						<p>Send a message to a storage account queue using C# and the Azure.Storage.Queues library, then receive and cancel all messages in the queue</p>
 						<br />
 			<pre><code class="c#">private async Task ImplementSolutionsThatUseAzureQueueStorageQueues()

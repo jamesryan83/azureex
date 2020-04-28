@@ -44,6 +44,11 @@ code {
 	color: rgb(207, 36, 36);
 }
 
+code.ps {
+	padding-top: 10px;
+	color: rgb(36, 50, 207);
+}
+
 hr {
 	margin-top: 10px;
 	background-color: #333;
@@ -79,6 +84,7 @@ hr {
 	padding-left: 30px;
 	font-weight: normal;
 	font-size: 12px;
+	background-color: #9fafef;
 }
 
 #sidebar ul li a.selected {
@@ -143,6 +149,10 @@ hr {
 
 #content code {
 	display: block;
+}
+
+#content pre {
+	overflow-x: auto;
 }
 
 #content pre code {
