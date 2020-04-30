@@ -995,7 +995,11 @@ else
 						<p>Delete a Secret</p>
 						<code>az keyvault secret delete --vault-name MyKeyVault --name MyPassword</code>
 						<code class="ps">Remove-AzKeyVaultSecret -VaultName "mykeyvault" -Name "mysecret"</code>
-						<p>TODO certificates</p>
+						<p>Create a certificate</p>
+						<code>az keyvault certificate get-default-policy > myfile.json</code>
+						<code>az keyvault certificate create --vault-name mykeyvault -n mycertificate -p @myfile.json</code>
+						<code class="ps">$Policy = New-AzKeyVaultCertificatePolicy -SecretContentType "application/x-pkcs12" -SubjectName "CN=mydomain.com" -IssuerName "Self" -ValidityInMonths 6 -ReuseKeyOnRenewal</code>
+						<code class="ps">Add-AzKeyVaultCertificate -VaultName "MyKeyVault" -Name "mycertificate" -CertificatePolicy $Policy</code>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/key-vault/about-keys-secrets-and-certificates" target="_blank">Azure Docs</a>
@@ -1044,12 +1048,13 @@ else
 						<p>These can be set in the Caching Rules and Rules Engine sections of a CDN Endpoint</p>
 						<p>The caching rules control how the data is cached based on the query string</p>
 						<p>The rules engine controls various other properties of caching, such as headers, filetypes, URLs, cookies and expiration.  A single endpoint can have multiple rules</p>
-						<p>TODO</p>
+						<p>Azure Front Door allows caching of requests based on query strings.  It also has options for file caching and compression.  Expriration is based on cache response headers</p>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-caching-rules" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-caching-rules-tutorial" target="_blank">Azure Docs</a>
 						<a href="https://docs.microsoft.com/en-us/powershell/module/az.rediscache/?view=azps-3.8.0#redis_cache" target="_blank">Azure Ps Docs</a>
+						<a href="https://docs.microsoft.com/en-us/azure/frontdoor/front-door-caching" target="_blank">Azure Docs</a>
 					</div>
 
 					<h4 id="31">store and retrieve data in Azure Redis cache</h4>
