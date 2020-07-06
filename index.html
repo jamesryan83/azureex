@@ -15,7 +15,7 @@
 
 			<!-- Sidebar -->
 			<nav id="sidebar">
-				<h3>AZ-204</h3>
+				<h1>AZ-204</h1>
 
 				<ul class="list-unstyled">
 					<li><h5>Develop Azure compute solutions (25-30%)</h5></li>
@@ -148,13 +148,18 @@
 
 			<!-- Content -->
 			<div id="content">
+				<div id="text-color-note">
+					<code>red text is azure cli</code>
+					<code class="ps">blue text is powershell</code>
+				</div>
+
 				<h2>Develop Azure compute solutions (25-30%)</h2>
 
 				<hr />
 
-				<h3>Implement IaaS solutions</h3>
+				<h3 class="first-heading">Implement IaaS solutions</h3>
 				<div class="content-items">
-					<h4 id="1">provision VMs</h4>
+					<h4 id="1">Provision VMs</h4>
 					<div class="content-section">
 						<p>The following command will create a new virtual machine</p>
 						<code>az vm create --resource-group myResourceGroup --name myVM --image UbuntuLTS --size Standard_B1ls --admin-username azureuser --generate-ssh-keys</code>
@@ -169,7 +174,7 @@
 						<a href="https://docs.microsoft.com/en-us/powershell/module/az.compute/new-azvm?view=azps-3.8.0" target="_blank">Azure Ps Docs</a>
 					</div>
 
-					<h4 id="1b">configure VMs for remote access</h4>
+					<h4 id="1b">Configure VMs for remote access</h4>
 					<div class="content-section">
 						<p>Create a VM with open SSH (22) and RDP (3389) ports.  Then get the public IP address</p>
 						<code>az vm list-ip-addresses -g MyResourceGroup -n myVM --output table</code>
@@ -183,7 +188,7 @@
 						<a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/connect-logon" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="2">create ARM templates</h4>
+					<h4 id="2">Create ARM templates</h4>
 					<div class="content-section">
 						<p>Azure Resource Manager templates allow for automation of deploying azure services.  Services are defined in a json file.  Inputs to the services in this file can be defined as properties or variables to make the deployment parametric</p>
 						<p>ARM templates can be created in Visual Studio or in plain json files.  They can be created from scratch or copied from existing templates, such as when creating a new services in the portal an ARM template will be available before creation to copy and modify as needed</p>
@@ -193,7 +198,7 @@
 						<a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-tutorial-create-first-template" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="3">create container images for solutions by using Docker</h4>
+					<h4 id="3">Create container images for solutions by using Docker</h4>
 					<div class="content-section">
 						<p>Docker is required to create images.  A dockerfile is also required which describes the image to use as the base image, where the files will be, the working directory to run the application from and how to start the application</p>
 						<br />
@@ -223,7 +228,7 @@ CMD node /usr/src/app/index.js</code></pre>
 						<a href="https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli" target="_blank">Azure Docs</a>
 					</div> -->
 
-					<h4 id="5">run containers by using Azure Container Instance</h4>
+					<h4 id="5">Run containers by using Azure Container Instance</h4>
 					<div class="content-section">
 						<p>The following command will create a container instance from an image</p>
 						<code>az container create -g MyResourceGroup -n mycontainer --image microsoft/aci-helloworld --ports 80 --dns-name-label my-app-1 --location australiaeast</code>
@@ -245,7 +250,7 @@ CMD node /usr/src/app/index.js</code></pre>
 
 				<h3>Create Azure App Service Web Apps</h3>
 				<div class="content-items">
-					<h4 id="6">create an Azure App Service Web App</h4>
+					<h4 id="6">Create an Azure App Service Web App</h4>
 					<div class="content-section">
 						<p>First create a resource group</p>
 						<code>az group create --location australiaeast --name myResourceGroup</code>
@@ -262,7 +267,7 @@ CMD node /usr/src/app/index.js</code></pre>
 						<a href="https://docs.microsoft.com/en-us/powershell/module/az.websites/new-azwebapp?view=azps-3.8.0" target="_blank">Azure Ps Docs</a>
 					</div>
 
-					<h4 id="7">enable diagnostics logging</h4>
+					<h4 id="7">Enable diagnostics logging</h4>
 					<div class="content-section">
 						<p>This will enable webapp logging to the filesystem</p>
 						<code>az webapp log config --name mywebapp --resource-group myResourceGroup --application-logging true --detailed-error-messages true --failed-request-tracing true --web-server-logging filesystem</code>
@@ -278,7 +283,7 @@ CMD node /usr/src/app/index.js</code></pre>
 						<a href="https://docs.microsoft.com/en-us/learn/modules/capture-application-logs-app-service" target="_blank">Azure Learn</a>
 					</div>
 
-					<h4 id="8">deploy code to a web app</h4>
+					<h4 id="8">Deploy code to a web app</h4>
 					<div class="content-section">
 						<p>Setup deployment from a Github repository, where token is the access token and gitrepo is the url to the github repository.  The git access token is only required for private repositories</p>
 						<code>az webapp deployment source config --name mywebapp --resource-group myResourceGroup --repo-url gitrepo --branch master --git-token token</code>
@@ -291,7 +296,7 @@ CMD node /usr/src/app/index.js</code></pre>
 						<a href="https://docs.microsoft.com/en-us/azure/app-service/scripts/powershell-deploy-github" target="_blank">Azure Ps Docs</a>
 					</div>
 
-					<h4 id="9">configure web app settings including SSL, API, and connection strings</h4>
+					<h4 id="9">Configure web app settings including SSL, API, and connection strings</h4>
 					<div class="content-section">
 						<p>List current webapp settings</p>
 						<code>az webapp config appsettings list -g MyResourceGroup --name mywebapp --output table</code>
@@ -318,7 +323,7 @@ CMD node /usr/src/app/index.js</code></pre>
 						<a href="https://docs.microsoft.com/en-us/powershell/module/az.websites/get-azwebapp?view=azps-3.8.0" target="_blank">Azure Ps Docs</a>
 					</div>
 
-					<h4 id="10">implement autoscaling rules, including scheduled autoscaling, and scaling by operational or system metrics</h4>
+					<h4 id="10">Implement autoscaling rules, including scheduled autoscaling, and scaling by operational or system metrics</h4>
 					<div class="content-section">
 						<table>
 							<thead>
@@ -354,7 +359,7 @@ CMD node /usr/src/app/index.js</code></pre>
 
 				<h3>Implement Azure functions</h3>
 				<div class="content-items">
-					<h4 id="11">implement input and output bindings for a function</h4>
+					<h4 id="11">Implement input and output bindings for a function</h4>
 					<div class="content-section">
 						<p>First create a storage account</p>
 						<code>az storage account create -n mystorage -g MyResourceGroup -l australiaeast --sku Standard_LRS</code>
@@ -378,7 +383,7 @@ CMD node /usr/src/app/index.js</code></pre>
 						<a href="https://github.com/Azure-Samples/functions-quickstart" target="_blank">Github</a>
 					</div>
 
-					<h4 id="12">implement function triggers by using data operations, timers, and webhooks</h4>
+					<h4 id="12">Implement function triggers by using data operations, timers, and webhooks</h4>
 					<div class="content-section">
 						<p>The following function detects blobs uploaded to a container called blobtriggercontainer using a blob trigger, reads the content as a string, reverses the string, then saves an output blob with a prefixed datetime to a container called blobtriggercontainer2 using an output binding</p>
 						<br />
@@ -407,7 +412,7 @@ public static void Run([TimerTrigger("*/10 * * * * *")]TimerInfo myTimer, ILogge
 						<a href="https://cronexpressiondescriptor.azurewebsites.net/" target="_blank">Cron Calculator</a>
 					</div>
 
-					<h4 id="13">implement Azure Durable Functions</h4>
+					<h4 id="13">Implement Azure Durable Functions</h4>
 					<div class="content-section">
 						<p>Below is the setup for a basic durable function.  The HttpStart function is the first function that is called</p>
 						<p>The HttpStart function is a like a proxy to the RunOrchestrator function (Function1) which sets up the Function1_Hello function to be called twice</p>
@@ -453,9 +458,9 @@ public static void Run([TimerTrigger("*/10 * * * * *")]TimerInfo myTimer, ILogge
 
 				<hr />
 
-				<h3>Develop solutions that use Cosmos DB storage</h3>
+				<h3 class="first-heading">Develop solutions that use Cosmos DB storage</h3>
 				<div class="content-items">
-					<h4 id="14">select the appropriate API for your solution</h4>
+					<h4 id="14">Select the appropriate API for your solution</h4>
 					<div class="content-section">
 						<table>
 							<thead>
@@ -494,7 +499,7 @@ public static void Run([TimerTrigger("*/10 * * * * *")]TimerInfo myTimer, ILogge
 						<a href="https://docs.microsoft.com/en-gb/learn/modules/choose-api-for-cosmos-db/" target="_blank">Azure Learn</a>
 					</div>
 
-					<h4 id="15">implement partitioning schemes</h4>
+					<h4 id="15">Implement partitioning schemes</h4>
 					<div class="content-section">
 						<p>Collections are distributed across partitions based on the value of a collection's partition key</p>
 						<p>The partition key is a document property. Documents with the same partition key value are always located on the same logical partition. A partition supports a fixed maximum amount of storage and Request Units (RUs). When the capacity of a logical partition gets close to the maximum storage, Azure Cosmos DB allocates another physical partition.</p>
@@ -507,7 +512,7 @@ public static void Run([TimerTrigger("*/10 * * * * *")]TimerInfo myTimer, ILogge
 						<a href="https://docs.microsoft.com/en-gb/learn/modules/monitor-and-scale-cosmos-db/" target="_blank">Azure Learn</a>
 					</div>
 
-					<h4 id="16">interact with data using the appropriate SDK</h4>
+					<h4 id="16">Interact with data using the appropriate SDK</h4>
 					<div class="content-section">
 						<p>Create a cosmosdb account</p>
 						<code>az cosmosdb create --name mycosmosdb -g MyResourceGroup</code>
@@ -564,7 +569,7 @@ public class Person
 						<a href="https://github.com/Azure/azure-cosmos-dotnet-v3" target="_blank">Github</a>
 					</div>
 
-					<h4 id="17">set the appropriate consistency level for operations</h4>
+					<h4 id="17">Set the appropriate consistency level for operations</h4>
 					<div class="content-section">
 						<table>
 							<thead>
@@ -604,7 +609,7 @@ public class Person
 						<a href="https://docs.microsoft.com/en-gb/learn/modules/distribute-data-globally-with-cosmos-db/" target="_blank">Azure Learn</a>
 					</div>
 
-					<h4 id="18">create Cosmos DB containers</h4>
+					<h4 id="18">Create Cosmos DB containers</h4>
 					<div class="content-section">
 						<p>Create a cosmosdb container with a partition key using the Azure CLI</p>
 						<code>az cosmosdb sql container create -a mycosmosdb -g MyResourceGroup -d mydb -n mycontainer -p myPartitionKey</code>
@@ -622,7 +627,7 @@ public class Person
 					</div>
 
 
-					<h4 id="18b">implement scaling (partitions, containers)</h4>
+					<h4 id="18b">Implement scaling (partitions, containers)</h4>
 					<div class="content-section">
 						<p>In Azure Cosmos DB, a container is the fundamental unit of scalability. Data that's added to the container and the throughput that you provision on the container are automatically (horizontally) partitioned across a set of logical partitions. Data and throughput are partitioned based on the partition key you specify for the Azure Cosmos container</p>
 						<p>It's the best practice to have a partition key with many distinct values, such as hundreds or thousands. The goal is to distribute your data and workload evenly across the items associated with these partition key values.</p>
@@ -633,7 +638,7 @@ public class Person
 						<a href="https://docs.microsoft.com/en-gb/azure/cosmos-db/scaling-throughput" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="18c">implement server-side programming including stored procedures, triggers, and change feed notifications</h4>
+					<h4 id="18c">Implement server-side programming including stored procedures, triggers, and change feed notifications</h4>
 					<div class="content-section">
 						<p>When using the SQL API in Azure Cosmos DB, you can write stored procedures, triggers, and user-defined functions (UDFs) in the JavaScript language. You can write your logic in JavaScript that executed inside the database engine</p>
 						<p>The following is a stored procedure that will return all documents from a container</p>
@@ -663,7 +668,7 @@ public class Person
 
 				<h3>Develop solutions that use blob storage</h3>
 				<div class="content-items">
-					<h4 id="19">move items in Blob storage between storage accounts or containers</h4>
+					<h4 id="19">Move items in Blob storage between storage accounts or containers</h4>
 					<div class="content-section">
 						<p>Create a storage account with locally redundant storage</p>
 						<code>az storage account create -n mystorage -g MyResourceGroup -l australiaeast --sku Standard_LRS</code>
@@ -694,7 +699,7 @@ public class Person
 						<a href="https://docs.microsoft.com/en-us/powershell/module/az.storage/?view=azps-3.8.0" target="_blank">Azure Ps Docs</a>
 					</div>
 
-					<h4 id="20">set and retrieve properties and metadata</h4>
+					<h4 id="20">Set and retrieve properties and metadata</h4>
 					<div class="content-section">
 						<p>Add a metadata property to a container</p>
 						<code>az storage container metadata update -n container1 --metadata testvalue=something --account-name mystorage --account-key mykey</code>
@@ -715,7 +720,7 @@ public class Person
 						<a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-container-properties-metadata" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="21">interact with data using the appropriate SDK</h4>
+					<h4 id="21">Interact with data using the appropriate SDK</h4>
 					<div class="content-section">
 						<p>Below is an example of using the microsoft Azure.Storage.Blobs library to interact with blob storage</p>
 						<br />
@@ -746,7 +751,7 @@ public class Person
 						<a href="https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/storage/Azure.Storage.Blobs" target="_blank">Github</a>
 					</div>
 
-					<h4 id="22">implement data archiving and retention</h4>
+					<h4 id="22">Implement data archiving and retention</h4>
 					<div class="content-section">
 						<p><b>Hot</b> storage is for data that is accessed frequently (less than 30 days)</p>
 						<p><b>Cold</b> storage is for any data that will be stored for over 30 days and up to 180 days or longer.  Good for disaster recovery</p>
@@ -758,7 +763,7 @@ public class Person
 						<a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-rehydration" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="22b">implement hot, cool, and archive storage</h4>
+					<h4 id="22b">Implement hot, cool, and archive storage</h4>
 					<div class="content-section">
 						<p>Change hot storage tier to cool</p>
 						<code>az storage account update -n mystorage --access-tier cool</code>
@@ -769,13 +774,14 @@ public class Person
 					</div>
 				</div>
 
+
 				<h2>Implement Azure security (15-20%)</h2>
 
 				<hr />
 
-				<h3>Implement user authentication and authorization</h3>
+				<h3 class="first-heading">Implement user authentication and authorization</h3>
 				<div class="content-items">
-					<h4 id="23">implement OAuth2 authentication</h4>
+					<h4 id="23">Implement OAuth2 authentication</h4>
 					<div class="content-section">
 						<p>The first step is selecting the azure tenant that will contain the users and the app.  Then register a new application using azure app registrations.  The user will see a Microsoft login page and will be able to login to the application using their regular microsoft account.  The login page will show as soon as any url is accessed</p>
 						<p>Within an azure asp.net core app, add the AzureAD properties to the appsettings.json file</p>
@@ -830,7 +836,7 @@ else
 						<a href="https://identityserver4.readthedocs.io/en/latest/quickstarts/1_client_credentials.html" target="_blank">IdentityServer Docs</a>
 					</div>
 
-					<h4 id="24">create and implement shared access signatures</h4>
+					<h4 id="24">Create and implement shared access signatures</h4>
 					<div class="content-section">
 						<p>Create a shared access signature for a storage container</p>
 						<code>az storage container generate-sas -n container1 --account-name mystorage --account-key mykey</code>
@@ -876,7 +882,7 @@ else
 						<a href="https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az-storage-account-generate-sas" target="_blank">Azure Cli Docs</a>
 					</div>
 
-					<h4 id="25">register apps and use Azure Active Directory to authenticate users</h4>
+					<h4 id="25">Register apps and use Azure Active Directory to authenticate users</h4>
 					<div class="content-section">
 						<p>Apps are integrated with the Microsoft identity platform by registering them with an Azure Active Directory tenant</p>
 						<p>Active Directory authentication integration can then be added in Visual Studio to an existing project by adding it as a Connected Service and providing the Client ID from the app that was registered in the portal</p>
@@ -888,7 +894,7 @@ else
 					</div>
 
 
-					<h4 id="25b">control access to resources by using role-based access controls (RBAC)</h4>
+					<h4 id="25b">Control access to resources by using role-based access controls (RBAC)</h4>
 					<div class="content-section">
 						<p>A role is a set of permissions.  Role Based Access Control (RBAC) and Azure AD roles are not the same thing</p>
 					<p>Azure resources and Azure AD have independent permission systems. Azure RBAC roles are used to manage access to virtual machines, storage, and other Azure resources. Azure AD roles are used to manage access to Azure AD resources, such as user accounts and passwords</p>
@@ -963,7 +969,7 @@ else
 
 				<h3>Implement secure cloud solutions</h3>
 				<div class="content-items">
-					<h4 id="26">secure app configuration data by using the App Configuration and KeyVault API</h4>
+					<h4 id="26">Secure app configuration data by using the App Configuration and KeyVault API</h4>
 					<div class="content-section">
 						<p>Create an Azure Key Vault</p>
 						<code>az keyvault create --name MyKeyVault --resource-group myResourceGroup --location australiaeast</code>
@@ -979,7 +985,7 @@ else
 						<a href="https://docs.microsoft.com/en-us/azure/key-vault/vs-secure-secret-appsettings" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="27">manage keys, secrets, and certificates by using the KeyVault API</h4>
+					<h4 id="27">Manage keys, secrets, and certificates by using the KeyVault API</h4>
 					<div class="content-section">
 						<p>Create a new Key</p>
 						<code>az keyvault key create --vault-name MyKeyVault --name MyKey</code>
@@ -1010,7 +1016,7 @@ else
 						<a href="https://docs.microsoft.com/en-us/powershell/module/az.keyvault/?view=azps-3.8.0" target="_blank">Azure Ps Docs</a>
 					</div>
 
-					<h4 id="28">implement Managed Identities for Azure resources</h4>
+					<h4 id="28">Implement Managed Identities for Azure resources</h4>
 					<div class="content-section">
 						<p>A managed identity from Azure Active Directory (AAD) allows your app to easily access other AAD-protected resources such as Azure Key Vault. The identity is managed by the Azure platform and does not require you to provision or rotate any secrets</p>
 						<p>A system-assigned identity is tied to your application and is deleted if your app is deleted. An app can only have one system-assigned identity</p>
@@ -1024,13 +1030,14 @@ else
 
 				</div>
 
+
 				<h2>Monitor, troubleshoot, and optimize Azure solutions (10-15%)</h2>
 
 				<hr />
 
-				<h3>Integrate caching and content delivery within solutions</h3>
+				<h3 class="first-heading">Integrate caching and content delivery within solutions</h3>
 				<div class="content-items">
-					<h4 id="29">develop code to implement CDN’s in solutions</h4>
+					<h4 id="29">Develop code to implement CDN’s in solutions</h4>
 					<div class="content-section">
 						<p>Create a new CDN Profile</p>
 						<code>az cdn profile create --name MyCdn --resource-group myResourceGroup --location australiaeast --sku Standard_Microsoft</code>
@@ -1045,7 +1052,7 @@ else
 						<a href="https://docs.microsoft.com/en-us/powershell/module/az.cdn/?view=azps-3.8.0#cdn" target="_blank">Azure Ps Docs</a>
 					</div>
 
-					<h4 id="30">configure cache and expiration policies for FrontDoor, CDNs, or Redis caches</h4>
+					<h4 id="30">Configure cache and expiration policies for FrontDoor, CDNs, or Redis caches</h4>
 					<div class="content-section">
 						<p>These can be set in the Caching Rules and Rules Engine sections of a CDN Endpoint</p>
 						<p>The caching rules control how the data is cached based on the query string</p>
@@ -1059,7 +1066,7 @@ else
 						<a href="https://docs.microsoft.com/en-us/azure/frontdoor/front-door-caching" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="31">store and retrieve data in Azure Redis cache</h4>
+					<h4 id="31">Store and retrieve data in Azure Redis cache</h4>
 					<div class="content-section">
 						<p>Create a redis cache</p>
 						<code>az redis create --location australiaeast --name myrediscache --resource-group MyResourceGroup --sku Basic --vm-size c0</code>
@@ -1105,7 +1112,7 @@ class Employee
 
 				<h3>Instrument solutions to support monitoring and logging</h3>
 				<div class="content-items">
-					<h4 id="32">configure instrumentation in an app or service by using Application Insights</h4>
+					<h4 id="32">Configure instrumentation in an app or service by using Application Insights</h4>
 					<div class="content-section">
 						<p>Application Insights instances can be created and configured in the portal.  Some services, such as azure functions, will have an instance of application insights setup automatically during creation</p>
 						<p>Most services will require an Instrumentation Key to connect to an application insights instance and will have a section in the portal to attach an application insights instance</p>
@@ -1116,7 +1123,7 @@ class Employee
 						<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/website-monitoring" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="33">analyze log data and troubleshoot solutions by using Azure Monitor</h4>
+					<h4 id="33">Analyze log data and troubleshoot solutions by using Azure Monitor</h4>
 					<div class="content-section">
 						<p>The "Logs" and "Failures" sections of application insights can be used to analyse requests, failures, events and other telemetry.  Azure devops or github issues can also be created as work items from within the portal where the exception can be attached to the work item</p>
 						<p>The Visual Studio snapshot debugger can also be used to diagnose problems by taking a snapshot of the current running application and its variables at the time of the exception</p>
@@ -1125,7 +1132,7 @@ class Employee
 						<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/learn/tutorial-runtime-exceptions" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="34">implement Application Insights Web Test and Alerts</h4>
+					<h4 id="34">Implement Application Insights Web Test and Alerts</h4>
 					<div class="content-section">
 						<p>Web tests can be created in the Availability section of an Application Insights instance that is connected to a service</p>
 						<p>URL Ping tests can be used to tell if a service is currently available.  An interval can be set with retries and the URL can be called from multiple locations.  If there is an error than an alert will be sent</p>
@@ -1135,7 +1142,7 @@ class Employee
 						<a href="https://docs.microsoft.com/en-us/azure/azure-monitor/app/monitor-web-app-availability" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="35">implement code that handles transient faults</h4>
+					<h4 id="35">Implement code that handles transient faults</h4>
 					<div class="content-section">
 						<p>Systems can be unavailable or unreachable due to transient faults such as network problems and timeouts, or subsystems being offline, under load or otherwise non-responsive</p>
 						<p>Retries, timeouts, idempotent requests and patterns like circuit-breaker can mitigate transient faults</p>
@@ -1153,9 +1160,9 @@ class Employee
 
 				<hr />
 
-				<h3>Develop an App Service Logic App</h3>
+				<h3 class="first-heading">Develop an App Service Logic App</h3>
 				<div class="content-items">
-					<h4 id="36">create a Logic App</h4>
+					<h4 id="36">Create a Logic App</h4>
 					<div class="content-section">
 						<p>Logic apps can be created in the azure portal, in visual studio or by using azure resource manager templates.  The azure cli doesn't provide a way to create logic apps</p>
 					</div>
@@ -1163,7 +1170,7 @@ class Employee
 						<a href="https://docs.microsoft.com/en-us/azure/logic-apps/quickstart-create-first-logic-app-workflow" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="37">create a custom connector for Logic Apps</h4>
+					<h4 id="37">Create a custom connector for Logic Apps</h4>
 					<div class="content-section">
 						<p>Custom connectors can be created to perform custom api requests that aren't provided by any of the pre-built connectors.  Custom api requests can also be performed by using a HttpRequest connector but to be reuseable it might be better to create a custom connector</p>
 						<p>Custom connectors are web APIs that use REST for pluggable interfaces, Swagger metadata format for documentation, and JSON as their data exchange format</p>
@@ -1175,7 +1182,7 @@ class Employee
 						<a href="https://docs.microsoft.com/en-gb/connectors/custom-connectors/define-blank" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="38">create a custom template for Logic Apps</h4>
+					<h4 id="38">Create a custom template for Logic Apps</h4>
 					<div class="content-section">
 						<p>Logic app templates are deployed as an azure resource template.  They can be created from scrath or by modifying an existing logic app template</p>
 					</div>
@@ -1187,7 +1194,7 @@ class Employee
 
 				<h3>Implement API management</h3>
 				<div class="content-items">
-					<h4 id="39">create an APIM instance</h4>
+					<h4 id="39">Create an APIM instance</h4>
 					<div class="content-section">
 						<p>The following command will create a new APIM instance</p>
 						<code>az apim create --name MyApim -g MyResourceGroup -l australiaeast --publisher-email email@test.com --publisher-name Microsoft</code>
@@ -1198,7 +1205,7 @@ class Employee
 						<a href="https://docs.microsoft.com/en-us/powershell/module/az.apimanagement/?view=azps-3.8.0#api_management" target="_blank">Azure Ps Docs</a>
 					</div>
 
-					<h4 id="40">configure authentication for APIs</h4>
+					<h4 id="40">Configure authentication for APIs</h4>
 					<div class="content-section">
 						<p>Subscriptions can be created which include a subscription key that must be passed in the headers of the request</p>
 						<p>Client certificates can be used to access the backend apis that the api management instance calls and the api management instance itself can request a certificate from the users calling it as well</p>
@@ -1211,7 +1218,7 @@ class Employee
 						<a href="https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad" target="_blank">Azure Docs</a>
 					</div>
 
-					<h4 id="41">define policies for APIs</h4>
+					<h4 id="41">Define policies for APIs</h4>
 					<div class="content-section">
 						<p>Policies allow the publisher to change the behavior of the API through configuration</p>
 						<p>For example an api management route can call an azure function by adding the function route by overriding the http endpoint in the Backend section, then adding the functions Code parameter as a query-string policy in the Inbound Processing section</p>
@@ -1227,7 +1234,7 @@ class Employee
 
 				<h3>Develop event-based solutions (Note: Creating event models is in scope)</h3>
 				<div class="content-items">
-					<h4 id="42">implement solutions that use Azure Event Grid</h4>
+					<h4 id="42">Implement solutions that use Azure Event Grid</h4>
 					<div class="content-section">
 						<p>Below is a description of each of the event and messaging based solutions.  Events are typically a lightweight notification of a change and a message is data produced by a service to be passed to another service</p>
 						<table>
@@ -1329,7 +1336,7 @@ public static async Task&lt;IActionResult> Run([HttpTrigger(AuthorizationLevel.F
 						<a href="https://docs.microsoft.com/en-us/powershell/module/az.eventgrid/?view=azps-3.8.0#event_grid" target="_blank">Azure Ps Docs</a>
 					</div>
 
-					<h4 id="43">implement solutions that use Azure Notification Hubs</h4>
+					<h4 id="43">Implement solutions that use Azure Notification Hubs</h4>
 					<div class="content-section">
 						<p>A notification hub can be created in the portal or using the cli by installing the notification hub cli extension</p>
 						<p>This example will send a push notification to the notification hub</p>
@@ -1347,7 +1354,7 @@ public static async Task&lt;IActionResult> Run([HttpTrigger(AuthorizationLevel.F
 						<a href="https://docs.microsoft.com/en-us/azure/notification-hubs/create-notification-hub-azure-cli" target="_blank">Azure Cli Docs</a>
 					</div>
 
-					<h4 id="44">implement solutions that use Azure Event Hub</h4>
+					<h4 id="44">Implement solutions that use Azure Event Hub</h4>
 					<div class="content-section">
 						<p>Create a new event hub namespace</p>
 						<code>az eventhubs namespace create -g MyResourceGroup -n myeventhub</code>
@@ -1412,7 +1419,7 @@ public static async Task&lt;IActionResult> Run([HttpTrigger(AuthorizationLevel.F
 
 				<h3>Develop message-based solutions</h3>
 				<div class="content-items">
-					<h4 id="45">implement solutions that use Azure Service Bus</h4>
+					<h4 id="45">Implement solutions that use Azure Service Bus</h4>
 					<div class="content-section">
 						<p>Create a new service bus namespace</p>
 						<code>az servicebus namespace create --resource-group MyResourceGroup --name mynamespace --location australiaeast --sku Standard</code>
@@ -1490,7 +1497,7 @@ public static async Task&lt;IActionResult> Run([HttpTrigger(AuthorizationLevel.F
 						<a href="https://docs.microsoft.com/en-us/powershell/module/az.servicebus/?view=azps-3.8.0#service_bus" target="_blank">Azure Ps Docs</a>
 					</div>
 
-					<h4 id="46">implement solutions that use Azure Queue Storage queues</h4>
+					<h4 id="46">Implement solutions that use Azure Queue Storage queues</h4>
 					<div class="content-section">
 						<p>Create a new queue in a storage account</p>
 						<code>az storage queue create -n myqueue --account-name mystorage --account-key mykey</code>
