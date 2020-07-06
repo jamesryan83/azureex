@@ -157,10 +157,12 @@
 					<h4 id="1">provision VMs</h4>
 					<div class="content-section">
 						<p>The following command will create a new virtual machine</p>
-						<code>az vm create --resource-group myResourceGroup --name myVM --image UbuntuLTS --admin-username azureuser --generate-ssh-keys</code>
+						<code>az vm create --resource-group myResourceGroup --name myVM --image UbuntuLTS --size Standard_B1ls --admin-username azureuser --generate-ssh-keys</code>
 						<code class="ps">$pw = ConvertTo-SecureString "MyPassword" -AsPlainText -Force</code>
 						<code class="ps">$credential = New-Object System.Management.Automation.PSCredential ("azureuser", $pw);</code>
 						<code class="ps">New-AzVM -ResourceGroupName "MyResourceGroup" -Name "MyVm" -Credential $credential</code>
+						<p>Then connect to the vm using SSH</p>
+						<code>ssh azureuser@publicIpAddress</code>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli" target="_blank">Azure Cli Docs</a>
@@ -170,12 +172,12 @@
 					<h4 id="1b">configure VMs for remote access</h4>
 					<div class="content-section">
 						<p>Create a VM with open SSH (22) and RDP (3389) ports.  Then get the public IP address</p>
-						<code>az vm list-ip-addresses -g MyResourceGroupAutomate -n myVM --output table</code>
-						<code class="ps">Get-AzPublicIPAddress -ResourceGroupName "myResourceGroupAutomate" -Name "myPublicIPAddress" | select IpAddress</code>
+						<code>az vm list-ip-addresses -g MyResourceGroup -n myVM --output table</code>
+						<code class="ps">Get-AzPublicIPAddress -ResourceGroupName "myResourceGroup" -Name "myPublicIPAddress" | select IpAddress</code>
 						<p>Then connect using RDP</p>
 						<code>mstsc /v:publicIpAddress</code>
 						<p>Or SSH</p>
-						<code>ssh publicIpAddress</code>
+						<code>ssh azureuser@publicIpAddress</code>
 					</div>
 					<div class="content-section-docs">
 						<a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/connect-logon" target="_blank">Azure Docs</a>
