@@ -16,11 +16,11 @@ html, body {
 #container-main {
 	height: 100%;
 	width: 100%;
-	color: #444;
+	color: #555;
 	overflow: hidden;
-	background: #7f8aa7;  /* fallback for old browsers */
-	background: -webkit-linear-gradient(to right, #cdd2dd, #7f8aa7);  /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to right, #cdd2dd, #7f8aa7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: #98a4c1;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #cdd2dd, #98a4c1);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #cdd2dd, #98a4c1); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 #sidebar, #content {
@@ -74,13 +74,14 @@ hr {
 
 #sidebar h1 {
 	color: #ddd;
-	background-color: #7f8aa7;
+	background-color: #9aa7c7;
 }
 
 #sidebar h5 {
 	color: #eee;
 	font-size: 18px;
-	background-color: #9ca3b8;
+	border-top: 1px solid #8f939b;
+	background-color: #aeb6ce;
 }
 
 #sidebar h6 {
